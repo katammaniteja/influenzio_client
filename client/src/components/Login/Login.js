@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { userLogin } from "../../utils/API_CALLS";
 
 function App() {
+  const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -70,14 +71,26 @@ function App() {
                   name="email"
                 />
                 <MDBInput
-                  wrapperClass="mb-3"
+                  wrapperClass="mb-1"
                   label="Password"
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   onChange={handleInput}
                   name="password"
                   value={userData.password}
                 />
+                <div class="form-check mb-3">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                    onChange={(e) => setShowPassword(!showPassword)}
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Show Password
+                  </label>
+                </div>
                 <div className="mb-3">
                   Don't have an account?
                   <NavLink to="/register"> Register</NavLink>
