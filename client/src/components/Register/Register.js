@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./About.css";
+import "./register.css";
 import {
   MDBContainer,
   MDBRow,
@@ -9,17 +9,24 @@ import {
   MDBInput,
 } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { userRegister } from "../../utils/API_CALLS";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     password: "",
     cpassword: "",
   });
+
+  const emailValidation = () => {
+    const regex =
+      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    return regex.test(userData.email);
+  };
 
   const validateInput = () => {
     const { name, email, password, cpassword } = userData;
@@ -29,6 +36,10 @@ function App() {
     }
     if (password !== cpassword) {
       toast.error("Passwords are not matched");
+      return false;
+    }
+    if (!emailValidation()) {
+      toast.error("Invalid Email");
       return false;
     }
     return true;
@@ -44,7 +55,6 @@ function App() {
     e.preventDefault();
     const isValid = validateInput();
     if (!isValid) return;
-    // console.log
 
     const response = await userRegister(
       userData.name,
@@ -56,6 +66,7 @@ function App() {
     const data = await response.json();
     if (response.status === 201) {
       toast.success(data.message);
+      navigate("/login");
     } else {
       toast.error(data.error);
     }
@@ -129,7 +140,6 @@ function App() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <ToastContainer position="bottom-right" />
     </>
   );
 }

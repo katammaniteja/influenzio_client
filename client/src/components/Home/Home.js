@@ -60,7 +60,7 @@ function App() {
         </MDBCol>
 
         <MDBCol md="6" className="position-relative">
-          <div
+          {/* <div
             id="radius-shape-1"
             className="position-absolute rounded-circle shadow-5-strong"
           ></div>
@@ -122,7 +122,7 @@ function App() {
                 </button>
               </div>
             </MDBCardBody>
-          </MDBCard>
+          </MDBCard> */}
         </MDBCol>
       </MDBRow>
     </MDBContainer>

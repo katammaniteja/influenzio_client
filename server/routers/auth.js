@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
 
+const authenticate = require("./../middleware/authenticate");
 const Influencer = require("../models/userSchema");
 
 router.post("/register", async (req, res) => {
@@ -53,6 +54,15 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+router.get("/logout", (req, res) => {
+  res.clearCookie("jwttoken", { path: "/" });
+  res.status(200).send("User logout");
+});
+
+router.get("/verifyuser", authenticate, (req, res) => {
+  res.status(200).json({ message: "Valid User" });
 });
 
 module.exports = router;

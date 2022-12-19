@@ -9,11 +9,14 @@ import {
   MDBInput,
 } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { userLogin } from "../../utils/API_CALLS";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions/auth.action";
 
 function App() {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
@@ -44,11 +47,11 @@ function App() {
 
     const data = await response.json();
     if (response.status === 200) {
+      dispatch(login);
       toast.success(data.message);
     } else {
       toast.error(data.error);
     }
-    console.log(userData);
   };
 
   return (
@@ -79,7 +82,7 @@ function App() {
                   name="password"
                   value={userData.password}
                 />
-                <div class="form-check mb-3">
+                <div className="form-check mb-3">
                   <input
                     class="form-check-input"
                     type="checkbox"
@@ -87,7 +90,10 @@ function App() {
                     id="flexCheckDefault"
                     onChange={(e) => setShowPassword(!showPassword)}
                   />
-                  <label class="form-check-label" for="flexCheckDefault">
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexCheckDefault"
+                  >
                     Show Password
                   </label>
                 </div>
@@ -110,7 +116,6 @@ function App() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <ToastContainer position="bottom-right" />
     </>
   );
 }
