@@ -43,12 +43,11 @@ function App() {
     const isValid = validateInput();
     if (!isValid) return;
 
-    const response = await userLogin(userData.email, userData.password);
-
-    const data = await response.json();
-    if (response.status === 200) {
-      dispatch(login);
-      toast.success(data.message);
+    const data = await userLogin(userData);
+    if (data.jwttoken) {
+      // dispatch(login);
+      sessionStorage.setItem("jwttoken", data.jwttoken);
+      toast.success("Login Successful");
     } else {
       toast.error(data.error);
     }

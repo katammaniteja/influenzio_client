@@ -56,19 +56,12 @@ function App() {
     const isValid = validateInput();
     if (!isValid) return;
 
-    const response = await userRegister(
-      userData.name,
-      userData.email,
-      userData.password,
-      userData.cpassword
-    );
-
-    const data = await response.json();
-    if (response.status === 201) {
+    const data = await userRegister(userData);
+    if (data.message) {
       toast.success(data.message);
       navigate("/login");
     } else {
-      toast.error(data.error);
+      toast.error("Email Already Taken");
     }
   };
 

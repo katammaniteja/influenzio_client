@@ -43,11 +43,7 @@ router.post("/login", async (req, res) => {
           res.status(422).json({ error: "Invalid password" });
         } else {
           const token = await influencer.generateAuthToken();
-          res.cookie("jwttoken", token, {
-            expires: new Date(Date.now() + 25892000000),
-            httpOnly: true,
-          });
-          res.status(200).json({ message: "Login successful" });
+          res.status(200).json({ jwttoken: token });
         }
       }
     }

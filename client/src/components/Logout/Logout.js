@@ -19,7 +19,9 @@ const Logout = () => {
   };
 
   useEffect(() => {
-    handleLogout();
+    // handleLogout();
+    sessionStorage.removeItem("jwttoken");
+    navigate("/login");
   });
 };
 

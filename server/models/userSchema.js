@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
     },
     cpassword: {
       type: String,
-      required: true,
+      // required: true,
     },
     verified: {
       type: Boolean,
@@ -53,6 +53,7 @@ userSchema.methods.generateAuthToken = async function () {
     await this.save();
     return token;
   } catch (error) {
+    console.log("hiii");
     console.log(error);
   }
 };

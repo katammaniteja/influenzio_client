@@ -22,7 +22,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      {user ? (
+      {sessionStorage.getItem("jwttoken") ? (
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<About />} path="/about" />
@@ -32,6 +32,7 @@ const App = () => {
         </Routes>
       ) : (
         <Routes>
+          {/* <Route element={<Logout />} path="/logout" /> */}
           <Route element={<Home />} path="/" />
           <Route element={<Login />} path="/login" />
           <Route element={<Register />} path="/register" />

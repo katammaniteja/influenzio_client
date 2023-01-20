@@ -31,7 +31,7 @@ const Navbar = () => {
                   Influencers
                 </NavLink>
               </li>
-              {state && (
+              {sessionStorage.getItem("jwttoken") ? (
                 <>
                   <li className="nav-item me-3">
                     <NavLink className="nav-link" to="/about">
@@ -45,8 +45,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                 </>
-              )}
-              {!state && (
+              ) : (
                 <>
                   <li className="nav-item me-3">
                     <NavLink className="nav-link" to="/register">

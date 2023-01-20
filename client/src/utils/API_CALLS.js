@@ -1,34 +1,28 @@
-export const userRegister = async (name, email, password, cpassword) => {
-  const response = await fetch("/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      email,
-      password,
-      cpassword,
-    }),
-  });
-  return response;
+import axios from "axios";
+
+const BASE_URL = "http://localhost:5000";
+
+export const userRegister = async (userData) => {
+  try {
+    const { data } = await axios.post(BASE_URL + "/register", userData);
+    return data;
+  } catch (error) {
+    return error.response.data;
+  }
 };
 
-export const userLogin = async (email, password) => {
-  const response = await fetch("/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  });
-  return response;
+export const userLogin = async (loginData) => {
+  try {
+    const { data } = await axios.post(BASE_URL + "/login", loginData);
+    return data;
+  } catch (error) {
+    return error.response.data;
+  }
 };
 
 export const userLogout = async () => {
+  console.log("hii");
+  sessionStorage.removeItem("jwttoken");
   const response = await fetch("/logout", {
     method: "GET",
     headers: {

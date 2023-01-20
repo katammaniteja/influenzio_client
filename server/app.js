@@ -1,6 +1,13 @@
 const express = require("express");
 const app = express();
 
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 // Cookie
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
