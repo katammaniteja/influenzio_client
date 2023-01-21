@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import "./register.css";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-} from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
-import { userRegister } from "../../utils/API_CALLS";
+import { createUser } from "../../utils/API_CALLS";
 import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -56,84 +48,95 @@ function App() {
     const isValid = validateInput();
     if (!isValid) return;
 
-    const data = await userRegister(userData);
+    const data = await createUser(userData);
     if (data.message) {
       toast.success(data.message);
       navigate("/login");
     } else {
-      toast.error("Email Already Taken");
+      toast.error(data.error);
     }
   };
 
   return (
-    <>
-      <MDBContainer
-        fluid
-        className="p-4 background-radial-gradient overflow-hidden"
-      >
-        <MDBRow>
-          <MDBCol md="6" className="position-relative m-auto">
-            <MDBCard className="bg-glass">
-              <MDBCardBody className="p-5" padding="0px">
-                <div className="text-center mb-3">
-                  <h1>Create New Account</h1>
-                </div>
-                <MDBInput
-                  wrapperClass="mb-3"
-                  label="Name"
-                  name="name"
-                  value={userData.name}
+    <div className="p-4 background-radial-gradient overflow-hidden container-fluid">
+      <div className="row">
+        <div className="position-relative m-auto col-md-6">
+          <div className="bg-glass card">
+            <div className="p-5 card-body" padding="0px">
+              <div className="text-center mb-3">
+                <h1>Create New Account</h1>
+              </div>
+              <div class="mb-3">
+                <label for="name" class="form-label">
+                  Name
+                </label>
+                <input
+                  type="name"
+                  class="form-control"
                   id="name"
-                  type="text"
                   onChange={handleInput}
+                  value={userData.name}
+                  name="name"
                 />
-                <MDBInput
-                  wrapperClass="mb-3"
-                  label="Email"
-                  id="email"
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">
+                  Email Address
+                </label>
+                <input
                   type="email"
+                  class="form-control"
+                  id="email"
                   onChange={handleInput}
-                  value={userData.value}
+                  value={userData.email}
                   name="email"
                 />
-                <MDBInput
-                  wrapperClass="mb-3"
-                  label="Password"
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
                   id="password"
-                  type="password"
                   onChange={handleInput}
-                  name="password"
                   value={userData.password}
+                  name="password"
                 />
-                <MDBInput
-                  wrapperClass="mb-3"
-                  label="Confirm Password"
-                  id="cpassword"
+              </div>
+              <div class="mb-3">
+                <label for="cpassword" class="form-label">
+                  Confirm Password
+                </label>
+                <input
                   type="password"
+                  class="form-control"
+                  id="cpassword"
                   onChange={handleInput}
-                  name="cpassword"
                   value={userData.cpassword}
+                  name="cpassword"
                 />
-                <div className="mb-3">
-                  Already have an account?
-                  <NavLink to="/login"> Login</NavLink>
-                </div>
+              </div>
+              <div className="mb-3">
+                Already have an account?
+                <NavLink to="/login"> Login</NavLink>
+              </div>
 
-                <div className="d-grid gap-2">
-                  <button
-                    className="btn btn-primary"
-                    type="button"
-                    onClick={handleRegister}
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </>
+              <div className="d-grid gap-2">
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={handleRegister}
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

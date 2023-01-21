@@ -7,8 +7,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Logout from "./components/Logout/Logout";
 import { Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import { userStatus } from "./redux/actions/auth.action";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Influencers from "./components/Influencers/Influencers";
 import { ToastContainer } from "react-toastify";
@@ -16,13 +14,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const user = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  dispatch(userStatus);
 
   return (
     <>
       <Navbar />
-      {sessionStorage.getItem("jwttoken") ? (
+      {user ? (
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<About />} path="/about" />
@@ -32,7 +28,6 @@ const App = () => {
         </Routes>
       ) : (
         <Routes>
-          {/* <Route element={<Logout />} path="/logout" /> */}
           <Route element={<Home />} path="/" />
           <Route element={<Login />} path="/login" />
           <Route element={<Register />} path="/register" />

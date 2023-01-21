@@ -31,7 +31,7 @@ const Navbar = () => {
                   Influencers
                 </NavLink>
               </li>
-              {sessionStorage.getItem("jwttoken") ? (
+              {state ? (
                 <>
                   <li className="nav-item me-3">
                     <NavLink className="nav-link" to="/about">

@@ -1,19 +1,19 @@
-import { verifyUser } from "../../utils/API_CALLS";
+// import { verifyUser } from "../../utils/API_CALLS";
 
-export const userStatus = async (dispatch) => {
-  const response = await verifyUser();
-  if (response.status === 200) {
-    dispatch({
-      type: "USER",
-      payload: true,
-    });
-  } else {
-    dispatch({
-      type: "USER",
-      payload: false,
-    });
-  }
-};
+// export const userStatus = async (dispatch) => {
+//   const response = await verifyUser();
+//   if (response.status === 200) {
+//     dispatch({
+//       type: "USER",
+//       payload: true,
+//     });
+//   } else {
+//     dispatch({
+//       type: "USER",
+//       payload: false,
+//     });
+//   }
+// };
 
 export const login = (dispatch) => {
   dispatch({

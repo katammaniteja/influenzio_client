@@ -52,13 +52,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
-  res.clearCookie("jwttoken", { path: "/" });
-  res.status(200).send("User logout");
-});
-
-router.get("/verifyuser", authenticate, (req, res) => {
-  res.status(200).json({ message: "Valid User" });
-});
-
 module.exports = router;

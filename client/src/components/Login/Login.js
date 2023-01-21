@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import "./login.css";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-} from "mdb-react-ui-kit";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { userLogin } from "../../utils/API_CALLS";
+import { loginUser } from "../../utils/API_CALLS";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/auth.action";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useState({
@@ -43,11 +36,12 @@ function App() {
     const isValid = validateInput();
     if (!isValid) return;
 
-    const data = await userLogin(userData);
+    const data = await loginUser(userData);
     if (data.jwttoken) {
-      // dispatch(login);
-      sessionStorage.setItem("jwttoken", data.jwttoken);
+      dispatch(login);
+      localStorage.setItem("jwttoken", data.jwttoken);
       toast.success("Login Successful");
+      navigate("/");
     } else {
       toast.error(data.error);
     }
@@ -55,32 +49,40 @@ function App() {
 
   return (
     <>
-      <MDBContainer fluid className="p-4 gradient-custom-2 overflow-hidden">
-        <MDBRow>
-          <MDBCol md="6" className="position-relative m-auto">
-            <MDBCard className="bg-glass">
-              <MDBCardBody className="p-5" padding="0px">
+      <div className="p-4 gradient-custom-2 overflow-hidden container-fluid">
+        <div className="row">
+          <div className="position-relative m-auto col-md-6">
+            <div className="bg-glass card">
+              <div className="p-5 card-body">
                 <div className="text-center mb-3">
                   <h1>Login to your Account</h1>
                 </div>
-                <MDBInput
-                  wrapperClass="mb-3"
-                  label="Email"
-                  id="email"
-                  type="email"
-                  onChange={handleInput}
-                  value={userData.value}
-                  name="email"
-                />
-                <MDBInput
-                  wrapperClass="mb-1"
-                  label="Password"
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  onChange={handleInput}
-                  name="password"
-                  value={userData.password}
-                />
+                <div class="mb-3">
+                  <label for="email" class="form-label">
+                    Email address
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    onChange={handleInput}
+                    value={userData.email}
+                    name="email"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">
+                    Password
+                  </label>
+                  <input
+                    type={!showPassword ? "password" : "text"}
+                    class="form-control"
+                    id="password"
+                    onChange={handleInput}
+                    value={userData.password}
+                    name="password"
+                  />
+                </div>
                 <div className="form-check mb-3">
                   <input
                     class="form-check-input"
@@ -110,11 +112,11 @@ function App() {
                     Login
                   </button>
                 </div>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
