@@ -20,5 +20,6 @@ require("./db/conn");
 
 app.use(express.json());
 app.use(require("./routers/auth"));
+app.use(require("./routers/about"));
 
 app.listen(5000);

@@ -3,7 +3,8 @@ const Influencer = require("./../models/userSchema");
 
 const authenticate = async (req, res, next) => {
   try {
-    const token = req.cookies.jwttoken;
+    const { authorization } = req.headers;
+    const token = authorization.replace("Token ", "");
     const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
 
     const rootUser = await Influencer.findOne({
@@ -15,6 +16,7 @@ const authenticate = async (req, res, next) => {
       throw new Error("User Not Found");
     }
     req.token = token;
+    req.email = rootUser.email;
 
     next();
   } catch (err) {

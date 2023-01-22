@@ -18,23 +18,22 @@ const App = () => {
   return (
     <>
       <Navbar />
-      {user ? (
-        <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<About />} path="/about" />
-          <Route element={<Logout />} path="/logout" />
-          <Route element={<Influencers />} path="/influencers" />
-          <Route element={<Navigate to="/" replace />} path="*" />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Login />} path="/login" />
-          <Route element={<Register />} path="/register" />
-          <Route element={<Influencers />} path="/influencers" />
-          <Route element={<Navigate to="/" replace />} path="*" />
-        </Routes>
-      )}
+      <Routes>
+        <Route element={<Home />} path="/" />
+        <Route element={<Influencers />} path="/influencers" />
+        {user ? (
+          <>
+            <Route element={<About />} path="/about" />
+            <Route element={<Logout />} path="/logout" />
+          </>
+        ) : (
+          <>
+            <Route element={<Login />} path="/login" />
+            <Route element={<Register />} path="/register" />
+          </>
+        )}
+        <Route element={<Navigate to="/" replace />} path="*" />
+      </Routes>
       <ToastContainer position="bottom-right" autoClose={1400} />
     </>
   );

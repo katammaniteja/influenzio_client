@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const API_BASE_URL = "http://localhost:5000";
+const token = localStorage.getItem("jwttoken");
+const auth_token = token ? `Token ${token}` : "";
 
 export const createUser = async (userData) => {
   try {
@@ -19,3 +21,27 @@ export const loginUser = async (loginData) => {
     return error.response.data;
   }
 };
+
+export const userProfile = async () => {
+  try {
+    let config = {
+      headers: {
+        Authorization: auth_token,
+      },
+    };
+
+    const { data } = await axios.get(API_BASE_URL + "/about", config);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// export const userUpdate = async (updatedData) => {
+//   const response = await fetch("/about", {
+//     method: "PUT",
+//     credentials: "include",
+//     body: updatedData,
+//   });
+//   return response;
+// };
