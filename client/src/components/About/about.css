@@ -1,10 +1,32 @@
-.gradient-custom-2 {
-    /* fallback for old browsers */
-    background: #fbc2eb;
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
-    }
+.about {
+  background-color: #000;
+  border-radius: 5px;
+  border: 1px solid white;
+  width: 900px;
+  /* margin-top: 5vh; */
+}
+.top-container {
+  background-color: #000;
+  color: white;
+  padding-bottom: 30px;
+}
+
+.right-top-container {
+  padding-top: 30px;
+  margin-left: 40px;
+}
+
+.right-top-container .name {
+  font-size: 1.6rem;
+}
+
+.email,
+.contact {
+  margin-top: 20px;
+}
+
+.email span,
+.contact span {
+  margin-left: 5px;
+  color: #747474;
+}

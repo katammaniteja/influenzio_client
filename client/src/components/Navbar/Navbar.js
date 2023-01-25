@@ -2,6 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import logo from "./../../images/logo.png";
 
 const Navbar = () => {
   const state = useSelector((state) => state.auth);
@@ -11,7 +12,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <NavLink className="navbar-brand ms-3" to="/">
-            Title
+            <img src={logo} alt="" className="title-logo" />
           </NavLink>
           <button
             className="navbar-toggler"

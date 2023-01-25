@@ -13,4 +13,14 @@ router.get("/about", authenticate, async (req, res) => {
   }
 });
 
+router.put("/about", authenticate, async (req, res) => {
+  try {
+    const email = req.email;
+    await About.findOneAndUpdate({ email: email }, { ...req.body });
+    res.status(201).json({ message: "Your Profile Updated" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

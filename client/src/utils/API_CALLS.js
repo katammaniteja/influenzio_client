@@ -37,11 +37,22 @@ export const userProfile = async () => {
   }
 };
 
-// export const userUpdate = async (updatedData) => {
-//   const response = await fetch("/about", {
-//     method: "PUT",
-//     credentials: "include",
-//     body: updatedData,
-//   });
-//   return response;
-// };
+export const updateUser = async (updateData) => {
+  try {
+    console.log(updateData);
+    let config = {
+      headers: {
+        Authorization: auth_token,
+      },
+    };
+    const { data } = await axios.put(
+      API_BASE_URL + "/about",
+      updateData,
+      config
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error.response.data;
+  }
+};
