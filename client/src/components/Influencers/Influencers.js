@@ -3,13 +3,14 @@ import "./index.css";
 import { getInfluencers } from "../../utils/API_CALLS";
 
 const Influencers = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [influencers, setInfluencers] = useState();
   const [searchVal, setSearchVal] = useState("");
 
   const fetchInfluencers = async () => {
     const data = await getInfluencers();
     setInfluencers(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -22,9 +23,16 @@ const Influencers = () => {
 
   const handleFilter = (influencers) => {
     if (searchVal === "") return influencers;
-    return influencers.filter((influencer) =>
-      influencer.name.toLowerCase().includes(searchVal.toLowerCase())
-    );
+    return influencers.filter((influencer) => {
+      if (influencer.name.toLowerCase().includes(searchVal.toLowerCase()))
+        return true;
+      if (
+        influencer?.location &&
+        influencer.location.toLowerCase().includes(searchVal.toLowerCase())
+      )
+        return true;
+      return false;
+    });
   };
 
   return (
@@ -46,68 +54,74 @@ const Influencers = () => {
       </div>
 
       <div className="table-responsive mt-4 text-nowrap">
-        <table className="table table-striped align-middle">
-          <thead>
-            <tr>
-              <th scope="col">Account</th>
-              <th scope="col">Job</th>
-              <th scope="col">Followers</th>
-              <th scope="col">Location</th>
-              <th scope="col">Contact</th>
-            </tr>
-          </thead>
-          <tbody>
-            {handleFilter(influencers)?.map((influencer) => {
-              let imageURL =
-                "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-              const baseurl = "http://localhost:5000/public/images/";
-              if (influencer?.profilePic) {
-                imageURL = baseurl + influencer.profilePic;
-              }
+        {!loading ? (
+          <table className="table table-striped align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Account</th>
+                <th scope="col">Job</th>
+                <th scope="col">Followers</th>
+                <th scope="col">Location</th>
+                <th scope="col">Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              {handleFilter(influencers)?.map((influencer) => {
+                let imageURL =
+                  "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+                const baseurl = "http://localhost:5000/public/images/";
+                if (influencer?.profilePic) {
+                  imageURL = baseurl + influencer.profilePic;
+                }
 
-              return (
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <img
-                        src={imageURL}
-                        alt=""
-                        style={{ width: "45px", height: "45px" }}
-                        className="rounded-circle"
-                      />
-                      <div className="ms-3">
-                        <p className="fw-bold mb-1">{influencer.name}</p>
-                        <p className="text-muted mb-0">{influencer.email}</p>
+                return (
+                  <tr>
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={imageURL}
+                          alt=""
+                          style={{ width: "45px", height: "45px" }}
+                          className="rounded-circle"
+                        />
+                        <div className="ms-3">
+                          <p className="fw-bold mb-1">{influencer.name}</p>
+                          <p className="text-muted mb-0">{influencer.email}</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p className="fw-normal mb-1">Software engineer</p>
-                    <p className="text-muted mb-0">IT department</p>
-                  </td>
-                  <td>
-                    {influencer.social_handles?.map((handle) => {
-                      return (
-                        <>
-                          <span style={{ whiteSpace: "nowrap" }}>
-                            {handle.name} - {handle.followers}
-                          </span>
-                          <br />
-                        </>
-                      );
-                    })}
-                  </td>
-                  <td>{influencer?.location ? influencer.location : "-"}</td>
-                  <td>
-                    <div className="btn" color="link" rounded size="sm">
-                      Edit
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </td>
+                    <td>
+                      <p className="fw-normal mb-1">Software engineer</p>
+                      <p className="text-muted mb-0">IT department</p>
+                    </td>
+                    <td>
+                      {influencer.social_handles?.map((handle) => {
+                        return (
+                          <>
+                            <span style={{ whiteSpace: "nowrap" }}>
+                              {handle.name} - {handle.followers}
+                            </span>
+                            <br />
+                          </>
+                        );
+                      })}
+                    </td>
+                    <td>{influencer?.location ? influencer.location : "-"}</td>
+                    <td>
+                      <div className="btn" color="link" rounded size="sm">
+                        Edit
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <div class="spinner-border d-flex m-auto text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        )}
       </div>
     </div>
   );

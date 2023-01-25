@@ -3,7 +3,6 @@ import { MDBCardImage } from "mdb-react-ui-kit";
 import { userProfile } from "../../utils/API_CALLS";
 import { useEffect } from "react";
 import EditProfile from "./EditProfile";
-import { ColorRing } from "react-loader-spinner";
 import "./about.css";
 
 const About = () => {
@@ -33,7 +32,9 @@ const About = () => {
         }}
       >
         {loading ? (
-          <ColorRing height="100" width={100} style={{ margin: "auto" }} />
+          <div class="spinner-border d-flex m-auto text-waring" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         ) : (
           <>
             <div className="about container">
