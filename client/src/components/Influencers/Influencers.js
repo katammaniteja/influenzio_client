@@ -1,129 +1,116 @@
-import React from 'react';
-import './index.css'
-import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import React, { useEffect, useState } from "react";
+import "./index.css";
+import { getInfluencers } from "../../utils/API_CALLS";
 
-export default function Influencers() {
+const Influencers = () => {
+  const [loading, setLoading] = useState(false);
+  const [influencers, setInfluencers] = useState();
+  const [searchVal, setSearchVal] = useState("");
+
+  const fetchInfluencers = async () => {
+    const data = await getInfluencers();
+    setInfluencers(data);
+  };
+
+  useEffect(() => {
+    fetchInfluencers();
+  }, []);
+
+  const handleSearch = (e) => {
+    setSearchVal(e.target.value);
+  };
+
+  const handleFilter = (influencers) => {
+    if (searchVal === "") return influencers;
+    return influencers.filter((influencer) =>
+      influencer.name.toLowerCase().includes(searchVal.toLowerCase())
+    );
+  };
+
   return (
-    
-  <>
-          <div className='Search'>
-                    <h2 class="title">Buy shoutouts from social media influencers</h2>
-    <p class="sub-title">Browse social media influencers by category, followers and price</p>
+    <div className="container mt-2">
+      <div className="Search">
+        <h2 class="title">Buy shoutouts from social media influencers</h2>
+        <p class="sub-title">
+          Browse social media influencers by category, followers and price
+        </p>
 
         <div class="search-wrap">
-                            <input type="text" id="search_keywords" placeholder="Search influencers by keyword"/>
-                        <button type="submit" value="" class="btn-search" id="button_search">
-                <i class="fa fa-search">Search</i>
-            </button>
-   </div>
-   </div>
-   
-    <MDBTable align='middle'>
-      <MDBTableHead>
-        <tr>
-          <th scope='col'>Account</th>
-          <th scope='col'>Job</th>
-          <th scope='col'>Followers</th>
-          <th scope='col'>Price</th>
-          <th scope='col'>Contact</th>
-        </tr>
-      </MDBTableHead>
-      <MDBTableBody>
-        <tr>
-          <td>
-            <div className='d-flex align-items-center'>
-              <img
-                src='https://mdbootstrap.com/img/new/avatars/8.jpg'
-                alt=''
-                style={{ width: '45px', height: '45px' }}
-                className='rounded-circle'
-              />
-              <div className='ms-3'>
-                <p className='fw-bold mb-1'>John Doe</p>
-                <p className='text-muted mb-0'>john.doe@gmail.com</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p className='fw-normal mb-1'>Software engineer</p>
-            <p className='text-muted mb-0'>IT department</p>
-          </td>
-          <td>
-            <MDBBadge color='success' pill>
-              Active
-            </MDBBadge>
-          </td>
-          <td>Senior</td>
-          <td>
-            <MDBBtn color='link' rounded size='sm'>
-              Edit
-            </MDBBtn>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div className='d-flex align-items-center'>
-              <img
-                src='https://mdbootstrap.com/img/new/avatars/6.jpg'
-                alt=''
-                style={{ width: '45px', height: '45px' }}
-                className='rounded-circle'
-              />
-              <div className='ms-3'>
-                <p className='fw-bold mb-1'>Alex Ray</p>
-                <p className='text-muted mb-0'>alex.ray@gmail.com</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p className='fw-normal mb-1'>Consultant</p>
-            <p className='text-muted mb-0'>Finance</p>
-          </td>
-          <td>
-            <MDBBadge color='primary' pill>
-              Onboarding
-            </MDBBadge>
-          </td>
-          <td>Junior</td>
-          <td>
-            <MDBBtn color='link' rounded size='sm'>
-              Edit
-            </MDBBtn>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div className='d-flex align-items-center'>
-              <img
-                src='https://mdbootstrap.com/img/new/avatars/7.jpg'
-                alt=''
-                style={{ width: '45px', height: '45px' }}
-                className='rounded-circle'
-              />
-              <div className='ms-3'>
-                <p className='fw-bold mb-1'>Kate Hunington</p>
-                <p className='text-muted mb-0'>kate.hunington@gmail.com</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p className='fw-normal mb-1'>Designer</p>
-            <p className='text-muted mb-0'>UI/UX</p>
-          </td>
-          <td>
-            <MDBBadge color='warning' pill>
-              Awaiting
-            </MDBBadge>
-          </td>
-          <td>Senior</td>
-          <td>
-            <MDBBtn color='link' rounded size='sm'>
-              Edit
-            </MDBBtn>
-          </td>
-        </tr>
-      </MDBTableBody>
-    </MDBTable>
-    </>
+          <input
+            type="text"
+            id="search_keywords"
+            placeholder="Search influencers by keyword"
+            onChange={handleSearch}
+          />
+        </div>
+      </div>
+
+      <div className="table-responsive mt-4 text-nowrap">
+        <table className="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Account</th>
+              <th scope="col">Job</th>
+              <th scope="col">Followers</th>
+              <th scope="col">Location</th>
+              <th scope="col">Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {handleFilter(influencers)?.map((influencer) => {
+              let imageURL =
+                "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+              const baseurl = "http://localhost:5000/public/images/";
+              if (influencer?.profilePic) {
+                imageURL = baseurl + influencer.profilePic;
+              }
+
+              return (
+                <tr>
+                  <td>
+                    <div className="d-flex align-items-center">
+                      <img
+                        src={imageURL}
+                        alt=""
+                        style={{ width: "45px", height: "45px" }}
+                        className="rounded-circle"
+                      />
+                      <div className="ms-3">
+                        <p className="fw-bold mb-1">{influencer.name}</p>
+                        <p className="text-muted mb-0">{influencer.email}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p className="fw-normal mb-1">Software engineer</p>
+                    <p className="text-muted mb-0">IT department</p>
+                  </td>
+                  <td>
+                    {influencer.social_handles?.map((handle) => {
+                      return (
+                        <>
+                          <span style={{ whiteSpace: "nowrap" }}>
+                            {handle.name} - {handle.followers}
+                          </span>
+                          <br />
+                        </>
+                      );
+                    })}
+                  </td>
+                  <td>{influencer?.location ? influencer.location : "-"}</td>
+                  <td>
+                    <div className="btn" color="link" rounded size="sm">
+                      Edit
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
-}
+};
+
+export default Influencers;

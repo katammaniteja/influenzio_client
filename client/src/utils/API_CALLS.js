@@ -39,7 +39,6 @@ export const userProfile = async () => {
 
 export const updateUser = async (updateData) => {
   try {
-    console.log(updateData);
     let config = {
       headers: {
         Authorization: auth_token,
@@ -55,4 +54,9 @@ export const updateUser = async (updateData) => {
     console.log(error);
     return error.response.data;
   }
+};
+
+export const getInfluencers = async () => {
+  const { data } = await axios.get(API_BASE_URL + "/influencers");
+  return data;
 };
