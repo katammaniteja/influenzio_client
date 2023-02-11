@@ -8,6 +8,7 @@ const EditProfile = ({ updateDetails }) => {
 
   const fetchDetails = async () => {
     const data = await userProfile();
+    console.log(data);
     setUpdatedData(data);
   };
 
@@ -36,13 +37,16 @@ const EditProfile = ({ updateDetails }) => {
       return;
     }
 
-    // const formdata = new FormData();
-    // formdata.append("email", updatedData.email);
-    // formdata.append("name", updatedData.name);
-    // formdata.append("contact", updatedData.contact);
-    // formdata.append("location", updatedData.location);
-
-    const data = await updateUser(updatedData);
+    // console.log(updatedData);
+    const formData = new FormData();
+    formData.append("name", updatedData.name);
+    formData.append("email", updatedData.email);
+    formData.append("location", updatedData.location);
+    formData.append("contact", updatedData.contact);
+    formData.append("profilePic", updatedData.profilePic);
+    // console.log(updatedData.profilePic);
+    // formData.append("name", updatedData.name);
+    const data = await updateUser(formData);
     if (data?.error) {
       toast.error(data.error);
     } else {

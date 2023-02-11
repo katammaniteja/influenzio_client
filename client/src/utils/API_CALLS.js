@@ -39,6 +39,7 @@ export const userProfile = async () => {
 
 export const updateUser = async (updateData) => {
   try {
+    console.log(updateData);
     let config = {
       headers: {
         Authorization: auth_token,

@@ -14,7 +14,9 @@ const aboutSchema = new mongoose.Schema(
     location: {
       type: String,
     },
-    profilePic: String,
+    profilePic: {
+      type: String,
+    },
     social_handles: [
       {
         name: {
