@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto&display=swap");
+
+a {
+  text-decoration: none;
+  color: #354548;
+}
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar-avatar {
+  width: 120px;
+  height: 110px;
+  border-radius: 50%;
+}
+.sidebar-name {
+  font-family: "Kaushan Script", cursive;
+  margin: 5px 0px 20px;
+  font-size: 2rem;
+}
+.sidebar-name span {
+  color: #159957;
+}
+.sidebar-item {
+  margin-bottom: 8px;
+  padding-top: 8px;
+  height: 40px;
+  font-size: 1.05rem;
+  border-radius: 30px;
+}
+.sidebar-title {
+  background-color: #f1f1f1;
+  border-radius: 30px;
+}
+.sidebar-resume:hover {
+  background-color: #f1f1f2;
+  color: #000;
+}
+.sidebar-social-handles > div {
+  margin: 5px 0px;
+  display: flex;
+  /* justify-content: center; */
+  margin-left: 3vw;
+}
+.sidebar-social-handles > div div {
+  margin-top: 2px;
+  margin-left: 5px;
+  color: gray;
+  cursor: pointer;
+}
+.sidebar-icon {
+  width: 25px;
+  height: 25px;
+  color: #159957;
+}
+.sidebar-contact {
+  background-color: #dbdddf;
+  padding: 10px 0px;
+  margin: 30px -15px;
+}
+.sidebar-contact > div {
+  padding: 5px 0px;
+}
+.sidebar-email {
+  background-image: linear-gradient(to right bottom, #159957, #155799);
+  margin: 15px 25px 0px;
+  cursor: pointer;
+  color: white;
+  border-radius: 30px;
+  transition: all 3s linear;
+}
+.sidebar-email:hover {
+  transform: scale(1.1);
+}

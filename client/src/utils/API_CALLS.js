@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = "http://localhost:5000";
-const token = localStorage.getItem("jwttoken");
+const token = sessionStorage.getItem("jwttoken");
 const auth_token = token ? `Token ${token}` : "";
 
 export const createUser = async (userData) => {

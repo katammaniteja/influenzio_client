@@ -4,8 +4,6 @@ const router = express.Router();
 
 const Influencer = require("../models/userSchema");
 const About = require("./../models/aboutSchema");
-const Token = require("./../models/token");
-const sendEmail = require("./../utils/sendEmail");
 const crypto = require("crypto");
 
 router.post("/register", async (req, res) => {
@@ -23,15 +21,6 @@ router.post("/register", async (req, res) => {
       } else {
         const influencer = new Influencer({ email, password });
         await influencer.save();
-
-        const token = await new Token({
-          userId: influencer._id,
-          token: crypto.randomBytes(32).toString("hex"),
-        }).save();
-
-        const URL = `${process.env.BASE_URL}/users/${influencer._id}/verify/${token.token}`;
-        // await sendEmail(influencer.email, "Verify Email", URL);
-        // console.log(URL);
 
         const about = new About({ email, name });
         await about.save();

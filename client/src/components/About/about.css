@@ -1,9 +1,11 @@
-.about {
+/* body {
+  background-image: linear-gradient(to right bottom, #159957, #155799);
+} */
+/* .about {
   background-color: #000;
   border-radius: 5px;
   border: 1px solid white;
   width: 900px;
-  /* margin-top: 5vh; */
 }
 .top-container {
   background-color: #000;
@@ -29,4 +31,39 @@
 .contact span {
   margin-left: 5px;
   color: #747474;
+} */
+.app {
+  background-image: linear-gradient(to right bottom, #159957, #155799);
+  background-attachment: fixed;
+  min-height: 92.6vh;
+}
+.app-container {
+  padding-top: 50px;
+}
+
+.app-row {
+  height: 80vh;
+}
+
+.app-sidebar {
+  background-color: #fff;
+  height: 100%;
+  border-radius: 20px;
+  padding: 25px 15px;
+  box-shadow: 0px 0px 10px black;
+  text-align: center;
+}
+.app-main-content {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 25px 15px;
+  box-shadow: 0px 0px 10px black;
+  height: 100%;
+}
+
+@media (max-width: 991px) {
+  .app-main-content {
+    margin: 30px 0px;
+    height: auto;
+  }
 }

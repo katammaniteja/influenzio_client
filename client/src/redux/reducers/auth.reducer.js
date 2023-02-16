@@ -1,4 +1,4 @@
-const initialState = localStorage.getItem("jwttoken") ? true : false;
+const initialState = sessionStorage.getItem("jwttoken") ? true : false;
 
 export const authReducer = (prevState = initialState, action) => {
   const { type, payload } = action;

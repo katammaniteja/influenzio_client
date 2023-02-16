@@ -39,7 +39,7 @@ function App() {
     const data = await loginUser(userData);
     if (data.jwttoken) {
       dispatch(login);
-      localStorage.setItem("jwttoken", data.jwttoken);
+      sessionStorage.setItem("jwttoken", data.jwttoken);
       toast.success("Login Successful");
       navigate("/");
     } else {
