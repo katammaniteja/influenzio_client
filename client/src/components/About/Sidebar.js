@@ -3,9 +3,11 @@ import EditProfile from "./EditProfile";
 import "./sidebar.css";
 import { BsInstagram, BsTwitter, BsLinkedin, BsYoutube } from "react-icons/bs";
 
-export default function Sidebar({ userData, fetchDetails }) {
+export default function Sidebar({ userData, fetchDetails, userid }) {
   const imageURL = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
   const baseurl = "http://localhost:5000/public/images/";
+
+  console.log(userid);
 
   return (
     <div>
@@ -70,9 +72,13 @@ export default function Sidebar({ userData, fetchDetails }) {
         data-bs-toggle="modal"
         data-bs-target="#profileModal"
       >
-        Edit Profile
+        {userid === sessionStorage.getItem("userid")
+          ? "Edit Profile"
+          : "Contact"}
       </div>
-      <EditProfile updateDetails={fetchDetails} />
+      {userid === sessionStorage.getItem("userid") && (
+        <EditProfile updateDetails={fetchDetails} id={userid} />
+      )}
     </div>
   );
 }

@@ -40,6 +40,7 @@ function App() {
     if (data.jwttoken) {
       dispatch(login);
       sessionStorage.setItem("jwttoken", data.jwttoken);
+      sessionStorage.setItem("userid", data.userId);
       toast.success("Login Successful");
       navigate("/");
     } else {

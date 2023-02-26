@@ -22,7 +22,7 @@ export const loginUser = async (loginData) => {
   }
 };
 
-export const userProfile = async () => {
+export const userProfile = async ({ id }) => {
   try {
     let config = {
       headers: {
@@ -30,7 +30,7 @@ export const userProfile = async () => {
       },
     };
 
-    const { data } = await axios.get(API_BASE_URL + "/about", config);
+    const { data } = await axios.post(API_BASE_URL + "/about", { id }, config);
     return data;
   } catch (error) {
     console.log(error);
@@ -39,7 +39,6 @@ export const userProfile = async () => {
 
 export const updateUser = async (updateData) => {
   try {
-    console.log(updateData);
     let config = {
       headers: {
         Authorization: auth_token,

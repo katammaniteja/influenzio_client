@@ -32,6 +32,7 @@ const App = () => {
             <Route element={<Register />} path="/register" />
           </>
         )}
+        <Route element={<About />} path="/profile/:id" />
         <Route element={<Navigate to="/" replace />} path="*" />
       </Routes>
       <ToastContainer position="bottom-right" autoClose={1400} />

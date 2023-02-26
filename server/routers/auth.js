@@ -47,7 +47,8 @@ router.post("/login", async (req, res) => {
           res.status(422).json({ error: "Invalid password" });
         } else {
           const token = await influencer.generateAuthToken();
-          res.status(200).json({ jwttoken: token });
+          const about = await About.findOne({ email: email });
+          res.status(200).json({ jwttoken: token, userId: about._id });
         }
       }
     }

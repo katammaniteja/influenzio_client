@@ -8,6 +8,7 @@ const Logout = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("jwttoken");
+    sessionStorage.removeItem("userid");
     toast.success("Logout Successful");
     dispatch(logout);
   };

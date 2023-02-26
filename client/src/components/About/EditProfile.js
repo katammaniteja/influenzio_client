@@ -3,12 +3,11 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { userProfile, updateUser } from "../../utils/API_CALLS";
 
-const EditProfile = ({ updateDetails }) => {
+const EditProfile = ({ updateDetails, id }) => {
   const [updatedData, setUpdatedData] = useState({});
 
   const fetchDetails = async () => {
-    const data = await userProfile();
-    console.log(data);
+    const data = await userProfile({ id });
     setUpdatedData(data);
   };
 
@@ -37,15 +36,13 @@ const EditProfile = ({ updateDetails }) => {
       return;
     }
 
-    // console.log(updatedData);
     const formData = new FormData();
     formData.append("name", updatedData.name);
     formData.append("email", updatedData.email);
     formData.append("location", updatedData.location);
     formData.append("contact", updatedData.contact);
     formData.append("profilePic", updatedData.profilePic);
-    // console.log(updatedData.profilePic);
-    // formData.append("name", updatedData.name);
+
     const data = await updateUser(formData);
     if (data?.error) {
       toast.error(data.error);
@@ -103,7 +100,7 @@ const EditProfile = ({ updateDetails }) => {
                   className="form-control"
                   id="email"
                   aria-describedby="emailHelp"
-                  value={updatedData.email}
+                  value={updatedData?.email}
                   disabled
                 />
               </div>
@@ -117,7 +114,7 @@ const EditProfile = ({ updateDetails }) => {
                   id="name"
                   name="name"
                   onChange={handleInputs}
-                  value={updatedData.name}
+                  value={updatedData?.name}
                 />
               </div>
               <div className="mb-3">

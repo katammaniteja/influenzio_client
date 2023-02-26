@@ -62,7 +62,7 @@ const Influencers = () => {
                 <th scope="col">Job</th>
                 <th scope="col">Followers</th>
                 <th scope="col">Location</th>
-                <th scope="col">Contact</th>
+                <th scope="col">Profile</th>
               </tr>
             </thead>
             <tbody>
@@ -108,9 +108,7 @@ const Influencers = () => {
                     </td>
                     <td>{influencer?.location ? influencer.location : "-"}</td>
                     <td>
-                      <div className="btn" color="link" rounded size="sm">
-                        Edit
-                      </div>
+                      <a href={`/profile/${influencer._id}`}>View</a>
                     </td>
                   </tr>
                 );
