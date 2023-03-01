@@ -9,18 +9,14 @@ export default function Sidebar({
   userid,
   OpenChatBox,
 }) {
-  const imageURL = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-  const baseurl = "http://localhost:5000/public/images/";
+  // const imageURL = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+  // const baseurl = "http://localhost:5000/public/images/";
 
   console.log(userid);
 
   return (
     <div>
-      <img
-        src={userData?.profilePic ? baseurl + userData?.profilePic : imageURL}
-        alt="avatar"
-        className="sidebar-avatar"
-      />
+      <img src={userData.profilePic} alt="avatar" className="sidebar-avatar" />
       <div className="sidebar-name">
         Maniteja <span>Katam</span>
       </div>

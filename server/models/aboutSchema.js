@@ -6,7 +6,10 @@ const aboutSchema = new mongoose.Schema(
     email: String,
     contact: String,
     location: String,
-    profilePic: String,
+    profilePic: {
+      type: String,
+      default: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+    },
     twitter: String,
     youtube: String,
     linkedin: String,

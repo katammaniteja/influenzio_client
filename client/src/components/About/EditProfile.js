@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { userProfile, updateUser } from "../../utils/API_CALLS";
+import { storage } from "../../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const EditProfile = ({ updateDetails, id }) => {
   const [updatedData, setUpdatedData] = useState({});
+  const [uploadImage, setUploadImage] = useState(null);
 
   const fetchDetails = async () => {
     const data = await userProfile({ id });
@@ -36,14 +39,25 @@ const EditProfile = ({ updateDetails, id }) => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", updatedData.name);
-    formData.append("email", updatedData.email);
-    formData.append("location", updatedData.location);
-    formData.append("contact", updatedData.contact);
-    formData.append("profilePic", updatedData.profilePic);
+    if (uploadImage !== null) {
+      const imageRef = ref(
+        storage,
+        `profile/${uploadImage.name}+${Date.now()}`
+      );
+      await uploadBytes(imageRef, uploadImage);
+      const url = await getDownloadURL(imageRef);
+      const newData = { ...updatedData, profilePic: url };
+      const data = await updateUser(newData);
+      if (data?.error) {
+        toast.error(data.error);
+      } else {
+        toast.success(data.message);
+        updateDetails();
+      }
+      return;
+    }
 
-    const data = await updateUser(formData);
+    const data = await updateUser(updatedData);
     if (data?.error) {
       toast.error(data.error);
     } else {
@@ -56,10 +70,7 @@ const EditProfile = ({ updateDetails, id }) => {
     const profilePic = e.target.files[0];
     const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
     if (allowedFileTypes.includes(profilePic.type)) {
-      setUpdatedData({
-        ...updatedData,
-        profilePic: e.target.files[0],
-      });
+      setUploadImage(profilePic);
     } else {
       toast.error("Invalid Media Format");
       e.target.type = "text";

@@ -67,19 +67,12 @@ const Influencers = () => {
             </thead>
             <tbody>
               {handleFilter(influencers)?.map((influencer) => {
-                let imageURL =
-                  "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-                const baseurl = "http://localhost:5000/public/images/";
-                if (influencer?.profilePic) {
-                  imageURL = baseurl + influencer.profilePic;
-                }
-
                 return (
                   <tr>
                     <td>
                       <div className="d-flex align-items-center">
                         <img
-                          src={imageURL}
+                          src={influencer.profilePic}
                           alt=""
                           style={{ width: "45px", height: "45px" }}
                           className="rounded-circle"
