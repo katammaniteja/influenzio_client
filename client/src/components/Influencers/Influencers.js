@@ -38,12 +38,12 @@ const Influencers = () => {
   return (
     <div className="container mt-2">
       <div className="Search">
-        <h2 class="title">Buy shoutouts from social media influencers</h2>
-        <p class="sub-title">
+        <h2 className="title">Buy shoutouts from social media influencers</h2>
+        <p className="sub-title">
           Browse social media influencers by category, followers and price
         </p>
 
-        <div class="search-wrap">
+        <div className="search-wrap">
           <input
             type="text"
             id="search_keywords"
@@ -116,8 +116,11 @@ const Influencers = () => {
             </tbody>
           </table>
         ) : (
-          <div class="spinner-border d-flex m-auto text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div
+            className="spinner-border d-flex m-auto text-primary"
+            role="status"
+          >
+            <span className="visually-hidden">Loading...</span>
           </div>
         )}
       </div>

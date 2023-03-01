@@ -105,7 +105,7 @@ const EditProfile = ({ updateDetails, id }) => {
                 />
               </div>
               <div className="mb-3">
-                <label for="name" className="form-label">
+                <label htmlFor="name" className="form-label">
                   Name*
                 </label>
                 <input

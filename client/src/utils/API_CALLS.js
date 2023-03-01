@@ -60,3 +60,21 @@ export const getInfluencers = async () => {
   const { data } = await axios.get(API_BASE_URL + "/influencers");
   return data;
 };
+
+export const sendMessage1 = async (messageData) => {
+  try {
+    const { data } = await axios.post(API_BASE_URL + "/chat", messageData);
+    return data;
+  } catch (error) {
+    console.timeLog(error);
+  }
+};
+
+export const getMessages = async (userDetails) => {
+  try {
+    const { data } = await axios.post(API_BASE_URL + "/getChat", userDetails);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -3,7 +3,12 @@ import EditProfile from "./EditProfile";
 import "./sidebar.css";
 import { BsInstagram, BsTwitter, BsLinkedin, BsYoutube } from "react-icons/bs";
 
-export default function Sidebar({ userData, fetchDetails, userid }) {
+export default function Sidebar({
+  userData,
+  fetchDetails,
+  userid,
+  OpenChatBox,
+}) {
   const imageURL = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
   const baseurl = "http://localhost:5000/public/images/";
 
@@ -67,17 +72,21 @@ export default function Sidebar({ userData, fetchDetails, userid }) {
         <div className="">{userData.email}</div>
         <div className="">+91{userData.contact}</div>
       </div>
-      <div
-        className="sidebar-item sidebar-email"
-        data-bs-toggle="modal"
-        data-bs-target="#profileModal"
-      >
-        {userid === sessionStorage.getItem("userid")
-          ? "Edit Profile"
-          : "Contact"}
-      </div>
-      {userid === sessionStorage.getItem("userid") && (
-        <EditProfile updateDetails={fetchDetails} id={userid} />
+      {userid === sessionStorage.getItem("userid") ? (
+        <>
+          <div
+            className="sidebar-item sidebar-email"
+            data-bs-toggle="modal"
+            data-bs-target="#profileModal"
+          >
+            Edit Profile
+          </div>
+          <EditProfile updateDetails={fetchDetails} id={userid} />
+        </>
+      ) : (
+        <div className="sidebar-item sidebar-email" onClick={OpenChatBox}>
+          Contact
+        </div>
       )}
     </div>
   );
