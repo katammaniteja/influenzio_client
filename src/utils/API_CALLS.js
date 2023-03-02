@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const token = sessionStorage.getItem("jwttoken");
 const auth_token = token ? `Token ${token}` : "";
+console.log(API_BASE_URL, "hii");
 
 export const createUser = async (userData) => {
   try {
@@ -59,15 +60,6 @@ export const updateUser = async (updateData) => {
 export const getInfluencers = async () => {
   const { data } = await axios.get(API_BASE_URL + "/influencers");
   return data;
-};
-
-export const sendMessage1 = async (messageData) => {
-  try {
-    const { data } = await axios.post(API_BASE_URL + "/chat", messageData);
-    return data;
-  } catch (error) {
-    console.timeLog(error);
-  }
 };
 
 export const getMessages = async (userDetails) => {

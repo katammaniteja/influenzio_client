@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Launcher } from "popup-chat-react";
-import { sendMessage1 } from "../../utils/API_CALLS";
 import { getMessages } from "../../utils/API_CALLS";
+
+import { io } from "socket.io-client";
+const socket = io.connect(process.env.REACT_APP_API_BASE_URL);
 
 const Conversation = ({ userData, OpenChatBox, isOpen }) => {
   const [state, setState] = useState({
@@ -33,17 +35,12 @@ const Conversation = ({ userData, OpenChatBox, isOpen }) => {
     fetchMessages();
   }, []);
 
-  const helper = async (messageData) => {
-    await sendMessage1(messageData);
-  };
-
   function onMessageWasSent(message) {
-    console.log(message);
     const data = message.data.text;
     const sender = sessionStorage.getItem("userid");
     const receiver = userData._id;
-    // console.log(sender, receiver, data);
-    helper({ data, receiver, sender });
+    socket.emit("message", { sender, receiver, data });
+    // helper({ data, receiver, sender });
     setState((state) => ({
       ...state,
       messageList: [...state.messageList, message],
@@ -69,34 +66,26 @@ const Conversation = ({ userData, OpenChatBox, isOpen }) => {
     }));
   }
 
-  function sendMessage(text) {
-    if (text.length > 0) {
-      const newMessagesCount = state.isOpen
-        ? state.newMessagesCount
-        : state.newMessagesCount + 1;
-
+  socket.off("message").on("message", (msg) => {
+    if (
+      msg.receiver === sessionStorage.getItem("userid") &&
+      msg.sender === userData._id
+    ) {
       setState((state) => ({
         ...state,
-        newMessagesCount: newMessagesCount,
         messageList: [
           ...state.messageList,
           {
-            author: "them",
             type: "text",
-            data: { text },
+            author: "them",
+            data: {
+              text: msg.data,
+            },
           },
         ],
       }));
     }
-  }
-
-  function onClick() {
-    setState((state) => ({
-      ...state,
-      isOpen: !state.isOpen,
-      newMessagesCount: 0,
-    }));
-  }
+  });
 
   return (
     <div>
