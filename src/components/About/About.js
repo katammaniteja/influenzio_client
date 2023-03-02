@@ -29,6 +29,7 @@ const About = () => {
 
   useEffect(() => {
     fetchDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -52,7 +53,6 @@ const About = () => {
                   <Sidebar
                     userData={userData}
                     fetchDetails={fetchDetails}
-                    userid={id}
                     OpenChatBox={OpenChatBox}
                   />
                 </div>

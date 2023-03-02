@@ -22,6 +22,7 @@ const EditProfile = ({ updateDetails, id }) => {
 
   useEffect(() => {
     fetchDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInputs = (e) => {
