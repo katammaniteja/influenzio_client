@@ -101,7 +101,7 @@ const Influencers = () => {
                     </td>
                     <td>{influencer?.location ? influencer.location : "-"}</td>
                     <td>
-                      <a href={`/profile/${influencer._id}`}>View</a>
+                      <a href={`/about/${influencer._id}`}>View</a>
                     </td>
                   </tr>
                 );

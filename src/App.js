@@ -23,7 +23,6 @@ const App = () => {
         <Route element={<Influencers />} path="/influencers" />
         {user ? (
           <>
-            <Route element={<About />} path="/about" />
             <Route element={<Logout />} path="/logout" />
           </>
         ) : (
@@ -32,7 +31,7 @@ const App = () => {
             <Route element={<Register />} path="/register" />
           </>
         )}
-        <Route element={<About />} path="/profile/:id" />
+        <Route element={<About />} path="/about/:id" />
         <Route element={<Navigate to="/" replace />} path="*" />
       </Routes>
       <ToastContainer position="bottom-right" autoClose={1400} />

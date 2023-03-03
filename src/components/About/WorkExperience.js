@@ -7,7 +7,7 @@ export default function WorkExperience() {
       <div className="row">
         <div className="col-lg-12 resume-card">
           <div className="resume-card-heading">Work Experience</div>
-          <div className="resume-card-body">
+          {/* <div className="resume-card-body">
             <h5 className="resume-card-title">Shiksha Sopan-IIT Kanpur</h5>
             <p className="resume-card-name">
               Backend Developer Intern(Feb 2022-July 2022)
@@ -19,7 +19,7 @@ export default function WorkExperience() {
               keen observational skills, experimental skills, and analytical
               skills of a student in physics.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

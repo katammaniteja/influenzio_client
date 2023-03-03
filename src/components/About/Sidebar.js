@@ -1,7 +1,7 @@
 import React from "react";
 import EditProfile from "./EditProfile";
 import "./sidebar.css";
-import { BsInstagram, BsTwitter, BsLinkedin, BsYoutube } from "react-icons/bs";
+import { BsTwitter, BsLinkedin, BsYoutube } from "react-icons/bs";
 
 export default function Sidebar({ userData, fetchDetails, OpenChatBox }) {
   return (
@@ -14,42 +14,32 @@ export default function Sidebar({ userData, fetchDetails, OpenChatBox }) {
       <div className="sidebar-social-handles my-3">
         <div>
           <BsYoutube className="sidebar-icon" />
-          <a
-            href={`https://www.youtube.com/@${userData?.youtube}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div>{userData?.youtube ? "/" + userData.youtube : "-"}</div>
+          <a href={userData?.youtube} target="_blank" rel="noreferrer">
+            <div>
+              {userData?.youtube
+                ? "/" + userData.youtube.split("/").slice(-1)[0]
+                : "-"}
+            </div>
           </a>
         </div>
         <div>
           <BsTwitter className="sidebar-icon" />
-          <a
-            href={`https://twitter.com/${userData?.twitter}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div>{userData?.twitter ? "/" + userData.twitter : "-"}</div>
+          <a href={userData?.twitter} target="_blank" rel="noreferrer">
+            <div>
+              {userData?.twitter
+                ? "/" + userData.twitter.split("/").slice(-1)[0]
+                : "-"}
+            </div>
           </a>
         </div>
         <div>
           <BsLinkedin className="sidebar-icon" />
-          <a
-            href={`https://www.linkedin.com/in/${userData?.linkedin}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div>{userData?.linkedin ? "/" + userData.linkedin : "-"}</div>
-          </a>
-        </div>
-        <div>
-          <BsInstagram className="sidebar-icon" />
-          <a
-            href={`https://www.instagram.com/${userData?.instagram}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div>{userData?.instagram ? "/" + userData.instagram : "-"}</div>
+          <a href={userData?.linkedin} target="_blank" rel="noreferrer">
+            <div>
+              {userData?.linkedin
+                ? "/" + userData.linkedin.split("/").slice(-1)[0]
+                : "-"}
+            </div>
           </a>
         </div>
       </div>

@@ -12,12 +12,7 @@ const About = () => {
   const OpenChatBox = () => {
     setIsOpen(!isOpen);
   };
-
-  let { id } = useParams();
-  if (id === undefined) {
-    id = sessionStorage.getItem("userid");
-  }
-
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
 

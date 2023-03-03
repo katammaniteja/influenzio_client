@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { userProfile, updateUser } from "../../utils/API_CALLS";
 import { storage } from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import "./editProfile.css";
 
 const EditProfile = ({ updateDetails, id }) => {
   const [updatedData, setUpdatedData] = useState({});
@@ -103,20 +104,6 @@ const EditProfile = ({ updateDetails, id }) => {
           <div className="modal-body">
             <form>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email address*
-                </label>
-                <input
-                  name="email"
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  aria-describedby="emailHelp"
-                  value={updatedData?.email}
-                  disabled
-                />
-              </div>
-              <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Name*
                 </label>
@@ -143,16 +130,56 @@ const EditProfile = ({ updateDetails, id }) => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="place" className="form-label">
+                <label htmlFor="location" className="form-label">
                   Place*
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="place"
+                  id="location"
                   name="location"
                   onChange={handleInputs}
                   value={updatedData?.location}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="twitter" className="form-label">
+                  Twitter*
+                </label>
+                <input
+                  type="url"
+                  className="form-control"
+                  id="twitter"
+                  name="twitter"
+                  onChange={handleInputs}
+                  value={updatedData?.twitter}
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="linkedin" className="form-label">
+                  LinkedIn*
+                </label>
+                <input
+                  type="url"
+                  className="form-control"
+                  id="linkedin"
+                  name="linkedin"
+                  onChange={handleInputs}
+                  value={updatedData?.linkedin}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="youtube" className="form-label">
+                  Youtube*
+                </label>
+                <input
+                  type="url"
+                  className="form-control"
+                  id="youtube"
+                  name="youtube"
+                  onChange={handleInputs}
+                  value={updatedData?.youtube}
                 />
               </div>
               <div className="input-group mb-3">

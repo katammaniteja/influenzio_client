@@ -31,7 +31,11 @@ export const userProfile = async ({ id }) => {
       },
     };
 
-    const { data } = await axios.post(API_BASE_URL + "/about", { id }, config);
+    const { data } = await axios.get(
+      API_BASE_URL + "/about",
+      { params: { id } },
+      config
+    );
     return data;
   } catch (error) {
     console.log(error);

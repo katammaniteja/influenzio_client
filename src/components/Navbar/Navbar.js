@@ -34,7 +34,10 @@ const Navbar = () => {
             {state ? (
               <>
                 <li className="nav-item me-3">
-                  <NavLink className="nav-link" to="/about">
+                  <NavLink
+                    className="nav-link"
+                    to={`/about/${sessionStorage.getItem("userid")}`}
+                  >
                     My Profile
                   </NavLink>
                 </li>
