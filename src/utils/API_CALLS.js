@@ -3,7 +3,11 @@ import axios from "axios";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const token = sessionStorage.getItem("jwttoken");
 const auth_token = token ? `Token ${token}` : "";
-console.log(API_BASE_URL, "hii");
+let config = {
+  headers: {
+    Authorization: auth_token,
+  },
+};
 
 export const createUser = async (userData) => {
   try {
@@ -25,12 +29,6 @@ export const loginUser = async (loginData) => {
 
 export const userProfile = async ({ id }) => {
   try {
-    let config = {
-      headers: {
-        Authorization: auth_token,
-      },
-    };
-
     const { data } = await axios.get(
       API_BASE_URL + "/about",
       { params: { id } },
@@ -44,11 +42,6 @@ export const userProfile = async ({ id }) => {
 
 export const updateUser = async (updateData) => {
   try {
-    let config = {
-      headers: {
-        Authorization: auth_token,
-      },
-    };
     const { data } = await axios.put(
       API_BASE_URL + "/about",
       updateData,
@@ -73,4 +66,29 @@ export const getMessages = async (userDetails) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const addWorkExperience = async (workDetails) => {
+  try {
+    const { data } = await axios.post(
+      API_BASE_URL + "/work-experience",
+      workDetails,
+      config
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteWorkExperience = async ({ id }) => {
+  try {
+    console.log(id);
+    const { data } = await axios.delete(
+      API_BASE_URL + "/work-experience",
+      config,
+      { id }
+    );
+    return data;
+  } catch (error) {}
 };

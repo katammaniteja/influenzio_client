@@ -18,6 +18,8 @@
 .resume-card-title {
   font-weight: 600;
   margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
 }
 .resume-card-name {
   margin: 0;
