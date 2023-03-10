@@ -17,23 +17,24 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route element={<Home />} path="/" />
-        <Route element={<Influencers />} path="/influencers" />
-        {user ? (
-          <>
+      {user ? (
+        <>
+          <Navbar />
+          <Routes>
+            <Route element={<Home />} path="/" />
+            <Route element={<Influencers />} path="/influencers" />
             <Route element={<Logout />} path="/logout" />
-          </>
-        ) : (
-          <>
-            <Route element={<Login />} path="/login" />
-            <Route element={<Register />} path="/register" />
-          </>
-        )}
-        <Route element={<About />} path="/about/:id" />
-        <Route element={<Navigate to="/" replace />} path="*" />
-      </Routes>
+            <Route element={<About />} path="/about/:id" />
+            <Route element={<Navigate to="/" replace />} path="*" />
+          </Routes>
+        </>
+      ) : (
+        <Routes>
+          <Route element={<Login />} path="/login" />
+          <Route element={<Register />} path="/register" />
+          <Route element={<Navigate to="/login" replace />} path="*" />
+        </Routes>
+      )}
       <ToastContainer position="bottom-right" autoClose={1400} />
     </>
   );
