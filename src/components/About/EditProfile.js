@@ -4,11 +4,23 @@ import { toast } from "react-toastify";
 import { userProfile, updateUser } from "../../utils/API_CALLS";
 import { storage } from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import "./editProfile.css";
+import { TextField } from "@mui/material";
+import { Box } from "@mui/system";
+import Button from "@mui/material/Button";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import WorkIcon from "@mui/icons-material/Work";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import FaceIcon from "@mui/icons-material/Face";
+import AccessibilityIcon from "@mui/icons-material/Accessibility";
+import Stack from "@mui/material/Stack";
 
 const EditProfile = ({ updateDetails, id }) => {
   const [updatedData, setUpdatedData] = useState({});
   const [uploadImage, setUploadImage] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const fetchDetails = async () => {
     const data = await userProfile({ id });
@@ -16,9 +28,21 @@ const EditProfile = ({ updateDetails, id }) => {
   };
 
   const validate = () => {
-    const { email, name, contact, location } = updatedData;
-    if (!email || !name || !contact || !location) return false;
-    return true;
+    const errors = {};
+    const { name, contact, location, designation } = updatedData;
+    if (!name) {
+      errors.name = "This field is required";
+    }
+    if (!contact) {
+      errors.contact = "This field is required";
+    }
+    if (!location) {
+      errors.location = "This field is required";
+    }
+    if (!designation) {
+      errors.designation = "This field is required";
+    }
+    return errors;
   };
 
   useEffect(() => {
@@ -33,11 +57,16 @@ const EditProfile = ({ updateDetails, id }) => {
       ...updatedData,
       [name]: value,
     });
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
   };
 
   const handleUpdate = async () => {
-    if (!validate()) {
-      toast.error("All fields are required");
+    const errors = validate();
+    if (Object.keys(errors).length !== 0) {
+      setErrors(errors);
       return;
     }
 
@@ -90,7 +119,7 @@ const EditProfile = ({ updateDetails, id }) => {
     >
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-header mb-2">
             <h1 className="modal-title fs-5" id="profileModalLabel">
               Edit Profile
             </h1>
@@ -101,118 +130,143 @@ const EditProfile = ({ updateDetails, id }) => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body">
-            <form>
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Name*
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  name="name"
-                  onChange={handleInputs}
-                  value={updatedData?.name}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="contact" className="form-label">
-                  Contact No*
-                </label>
-                <input
-                  name="contact"
-                  type="text"
-                  className="form-control"
-                  id="contact"
-                  onChange={handleInputs}
-                  value={updatedData?.contact}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="location" className="form-label">
-                  Place*
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="location"
-                  name="location"
-                  onChange={handleInputs}
-                  value={updatedData?.location}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="twitter" className="form-label">
-                  Twitter*
-                </label>
-                <input
-                  type="url"
-                  className="form-control"
-                  id="twitter"
-                  name="twitter"
-                  onChange={handleInputs}
-                  value={updatedData?.twitter}
-                />
-              </div>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <AccessibilityIcon sx={{ mr: 1 }} />
+            <TextField
+              name="name"
+              onChange={handleInputs}
+              value={updatedData.name}
+              variant="outlined"
+              size="small"
+              type="name"
+              label="Name"
+              error={Boolean(errors.name)}
+              helperText={errors.name}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <WorkIcon sx={{ mr: 1 }} />
+            <TextField
+              name="designation"
+              onChange={handleInputs}
+              value={updatedData?.designation}
+              variant="outlined"
+              size="small"
+              type="designation"
+              label="Designation"
+              error={Boolean(errors.designation)}
+              helperText={errors.designation}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <PhoneIcon sx={{ mr: 1 }} />
+            <TextField
+              name="contact"
+              onChange={handleInputs}
+              value={updatedData?.contact}
+              variant="outlined"
+              size="small"
+              type="contact"
+              label="Contact No"
+              error={Boolean(errors.contact)}
+              helperText={errors.contact}
+              fullWidth
+            />
+          </Box>
 
-              <div className="mb-3">
-                <label htmlFor="linkedin" className="form-label">
-                  LinkedIn*
-                </label>
-                <input
-                  type="url"
-                  className="form-control"
-                  id="linkedin"
-                  name="linkedin"
-                  onChange={handleInputs}
-                  value={updatedData?.linkedin}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="youtube" className="form-label">
-                  Youtube*
-                </label>
-                <input
-                  type="url"
-                  className="form-control"
-                  id="youtube"
-                  name="youtube"
-                  onChange={handleInputs}
-                  value={updatedData?.youtube}
-                />
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  type="file"
-                  className="form-control"
-                  id="photo"
-                  onChange={imageUpload}
-                  name="profilePic"
-                />
-                <label className="input-group-text" htmlFor="photo">
-                  Upload
-                </label>
-              </div>
-            </form>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-              onClick={() => fetchDetails()}
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleUpdate}
-              data-bs-dismiss="modal"
-            >
-              Save changes
-            </button>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <LocationOnIcon sx={{ mr: 1 }} />
+            <TextField
+              name="location"
+              onChange={handleInputs}
+              value={updatedData?.location}
+              variant="outlined"
+              size="small"
+              type="location"
+              label="Location"
+              error={Boolean(errors.location)}
+              helperText={errors.location}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <TwitterIcon sx={{ mr: 1 }} />
+            <TextField
+              name="twitter"
+              onChange={handleInputs}
+              value={updatedData?.twitter}
+              variant="outlined"
+              size="small"
+              type="twitter"
+              label="Twitter URL"
+              error={Boolean(errors.twitter)}
+              helperText={errors.twitter}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <LinkedInIcon sx={{ mr: 1 }} />
+            <TextField
+              name="linkedin"
+              onChange={handleInputs}
+              value={updatedData.linkedin}
+              variant="outlined"
+              size="small"
+              type="linkedin"
+              label="LinkedIn URL"
+              error={Boolean(errors.linkedin)}
+              helperText={errors.linkedin}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <YouTubeIcon sx={{ mr: 1 }} />
+            <TextField
+              name="youtube"
+              onChange={handleInputs}
+              value={updatedData.youtube}
+              variant="outlined"
+              size="small"
+              type="youtube"
+              label="Youtube URL"
+              error={Boolean(errors.youtube)}
+              helperText={errors.youtube}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <FaceIcon sx={{ mr: 1 }} />
+            <TextField
+              name="email"
+              onChange={imageUpload}
+              variant="outlined"
+              size="small"
+              type="file"
+              error={Boolean(errors.email)}
+              helperText={errors.email}
+              fullWidth
+            />
+          </Box>
+
+          <div className="modal-footer mt-2">
+            <Stack spacing={1.5} direction="row">
+              <Button
+                data-bs-dismiss="modal"
+                variant="contained"
+                onClick={() => fetchDetails()}
+              >
+                Close
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleUpdate}
+                color="success"
+              >
+                Save Changes
+              </Button>
+            </Stack>
           </div>
         </div>
       </div>

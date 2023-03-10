@@ -10,7 +10,7 @@ export default function Sidebar({ userData, fetchDetails, OpenChatBox }) {
       <div className="sidebar-name">
         Maniteja <span>Katam</span>
       </div>
-      <div className="sidebar-item sidebar-title">Software Engineer</div>
+      <div className="sidebar-item sidebar-title">{userData?.designation}</div>
       <div className="sidebar-social-handles my-3">
         <div>
           <BsYoutube className="sidebar-icon" />
