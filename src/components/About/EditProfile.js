@@ -16,6 +16,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import FaceIcon from "@mui/icons-material/Face";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import Stack from "@mui/material/Stack";
+import isUrl from "is-url";
 
 const EditProfile = ({ updateDetails, id }) => {
   const [updatedData, setUpdatedData] = useState({});
@@ -23,13 +24,15 @@ const EditProfile = ({ updateDetails, id }) => {
   const [errors, setErrors] = useState({});
 
   const fetchDetails = async () => {
+    setErrors({});
     const data = await userProfile({ id });
     setUpdatedData(data);
   };
 
   const validate = () => {
     const errors = {};
-    const { name, contact, location, designation } = updatedData;
+    const { name, contact, location, designation, twitter, youtube, linkedin } =
+      updatedData;
     if (!name) {
       errors.name = "This field is required";
     }
@@ -41,6 +44,15 @@ const EditProfile = ({ updateDetails, id }) => {
     }
     if (!designation) {
       errors.designation = "This field is required";
+    }
+    if (twitter && !isUrl(twitter)) {
+      errors.twitter = "Invalid url";
+    }
+    if (youtube && !isUrl(youtube)) {
+      errors.youtube = "Invalid url";
+    }
+    if (linkedin && !isUrl(linkedin)) {
+      errors.linkedin = "Invalid url";
     }
     return errors;
   };
@@ -82,6 +94,7 @@ const EditProfile = ({ updateDetails, id }) => {
       if (data?.error) {
         toast.error(data.error);
       } else {
+        document.getElementById("closeModal").click();
         toast.success(data.message);
         updateDetails();
       }
@@ -92,6 +105,7 @@ const EditProfile = ({ updateDetails, id }) => {
     if (data?.error) {
       toast.error(data.error);
     } else {
+      document.getElementById("closeModal").click();
       toast.success(data.message);
       updateDetails();
     }
@@ -112,15 +126,15 @@ const EditProfile = ({ updateDetails, id }) => {
   return (
     <div
       className="modal fade"
-      id="profileModal"
+      id="editProfileModal"
       tabIndex="-1"
-      aria-labelledby="profileModalLabel"
+      aria-labelledby="editProfileModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header mb-2">
-            <h1 className="modal-title fs-5" id="profileModalLabel">
+            <h1 className="modal-title fs-5" id="editProfileModalLabel">
               Edit Profile
             </h1>
             <button
@@ -138,7 +152,7 @@ const EditProfile = ({ updateDetails, id }) => {
               value={updatedData.name}
               variant="outlined"
               size="small"
-              type="name"
+              type="text"
               label="Name"
               error={Boolean(errors.name)}
               helperText={errors.name}
@@ -153,7 +167,7 @@ const EditProfile = ({ updateDetails, id }) => {
               value={updatedData?.designation}
               variant="outlined"
               size="small"
-              type="designation"
+              type="text"
               label="Designation"
               error={Boolean(errors.designation)}
               helperText={errors.designation}
@@ -168,7 +182,7 @@ const EditProfile = ({ updateDetails, id }) => {
               value={updatedData?.contact}
               variant="outlined"
               size="small"
-              type="contact"
+              type="text"
               label="Contact No"
               error={Boolean(errors.contact)}
               helperText={errors.contact}
@@ -184,7 +198,7 @@ const EditProfile = ({ updateDetails, id }) => {
               value={updatedData?.location}
               variant="outlined"
               size="small"
-              type="location"
+              type="text"
               label="Location"
               error={Boolean(errors.location)}
               helperText={errors.location}
@@ -199,7 +213,7 @@ const EditProfile = ({ updateDetails, id }) => {
               value={updatedData?.twitter}
               variant="outlined"
               size="small"
-              type="twitter"
+              type="url"
               label="Twitter URL"
               error={Boolean(errors.twitter)}
               helperText={errors.twitter}
@@ -214,7 +228,7 @@ const EditProfile = ({ updateDetails, id }) => {
               value={updatedData.linkedin}
               variant="outlined"
               size="small"
-              type="linkedin"
+              type="url"
               label="LinkedIn URL"
               error={Boolean(errors.linkedin)}
               helperText={errors.linkedin}
@@ -229,7 +243,7 @@ const EditProfile = ({ updateDetails, id }) => {
               value={updatedData.youtube}
               variant="outlined"
               size="small"
-              type="youtube"
+              type="url"
               label="Youtube URL"
               error={Boolean(errors.youtube)}
               helperText={errors.youtube}
@@ -256,6 +270,7 @@ const EditProfile = ({ updateDetails, id }) => {
                 data-bs-dismiss="modal"
                 variant="contained"
                 onClick={() => fetchDetails()}
+                id="closeModal"
               >
                 Close
               </Button>

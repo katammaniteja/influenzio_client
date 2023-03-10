@@ -3,13 +3,11 @@ import EditProfile from "./EditProfile";
 import "./sidebar.css";
 import { BsTwitter, BsLinkedin, BsYoutube } from "react-icons/bs";
 
-export default function Sidebar({ userData, fetchDetails, OpenChatBox }) {
+const Sidebar = ({ userData, fetchDetails, OpenChatBox }) => {
   return (
     <div>
       <img src={userData.profilePic} alt="avatar" className="sidebar-avatar" />
-      <div className="sidebar-name">
-        Maniteja <span>Katam</span>
-      </div>
+      <div className="sidebar-name">{userData.name}</div>
       <div className="sidebar-item sidebar-title">{userData?.designation}</div>
       <div className="sidebar-social-handles my-3">
         <div>
@@ -53,7 +51,7 @@ export default function Sidebar({ userData, fetchDetails, OpenChatBox }) {
           <div
             className="sidebar-item sidebar-email"
             data-bs-toggle="modal"
-            data-bs-target="#profileModal"
+            data-bs-target="#editProfileModal"
           >
             Edit Profile
           </div>
@@ -66,4 +64,6 @@ export default function Sidebar({ userData, fetchDetails, OpenChatBox }) {
       )}
     </div>
   );
-}
+};
+
+export default Sidebar;

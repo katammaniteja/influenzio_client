@@ -1,12 +1,9 @@
 import React from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
 import logo from "./../../images/logo.png";
 
 const Navbar = () => {
-  const state = useSelector((state) => state.auth);
-
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -31,37 +28,19 @@ const Navbar = () => {
                 Influencers
               </NavLink>
             </li>
-            {state ? (
-              <>
-                <li className="nav-item me-3">
-                  <NavLink
-                    className="nav-link"
-                    to={`/about/${sessionStorage.getItem("userid")}`}
-                  >
-                    My Profile
-                  </NavLink>
-                </li>
-
-                <li className="nav-item me-3">
-                  <NavLink className="nav-link" to="/logout">
-                    Logout
-                  </NavLink>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item me-3">
-                  <NavLink className="nav-link" to="/register">
-                    Register
-                  </NavLink>
-                </li>
-                <li className="nav-item me-3">
-                  <NavLink className="nav-link" to="/login">
-                    Login
-                  </NavLink>
-                </li>
-              </>
-            )}
+            <li className="nav-item me-3">
+              <NavLink
+                className="nav-link"
+                to={`/about/${sessionStorage.getItem("userid")}`}
+              >
+                My Profile
+              </NavLink>
+            </li>
+            <li className="nav-item me-3">
+              <NavLink className="nav-link" to="/logout">
+                Logout
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

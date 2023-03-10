@@ -62,7 +62,6 @@ const About = () => {
           {id !== sessionStorage.getItem("userid") && (
             <Conversation
               userData={userData}
-              name={userData.name}
               OpenChatBox={OpenChatBox}
               isOpen={isOpen}
             />
