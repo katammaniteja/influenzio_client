@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const token = sessionStorage.getItem("jwttoken");
+const userid=sessionStorage.getItem("userid");
 const auth_token = token ? `Token ${token}` : "";
 let config = {
   headers: {
@@ -86,8 +87,7 @@ export const deleteWorkExperience = async ({ id }) => {
     console.log(id);
     const { data } = await axios.delete(
       API_BASE_URL + "/work-experience",
-      config,
-      { id }
+      { params: { we_id:id ,id:userid} }
     );
     return data;
   } catch (error) {}

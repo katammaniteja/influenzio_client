@@ -54,7 +54,7 @@ const About = () => {
               </div>
               <div className="col-lg-8">
                 <div className="app-main-content">
-                  {/* <WorkExperience work_experience={userData.work_experience} /> */}
+                  <WorkExperience work_experience={userData.work_experience} />
                 </div>
               </div>
             </div>
