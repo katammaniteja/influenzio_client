@@ -6,7 +6,6 @@ import { login } from "../../redux/actions/auth.action";
 import { NavLink } from "react-router-dom";
 import {
   Button,
-  // CardMedia,
   Checkbox,
   FormControlLabel,
   FormGroup,
@@ -85,12 +84,6 @@ const Login = () => {
             mb: 3,
           }}
         >
-          {/* <CardMedia
-            component="img"
-            sx={{ width: 82, filter: "invert(100%)", mr: 3 }}
-            // image={logo}
-            alt="NLC Logo"
-          /> */}
           <Typography fontWeight={500} variant="h3" color="#282828">
             Wayfarer
           </Typography>

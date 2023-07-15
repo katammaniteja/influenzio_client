@@ -1,45 +1,41 @@
 import React, { useState } from "react";
 import { addWorkExperience } from "../../utils/API_CALLS";
 import { toast } from "react-toastify";
+import { TextField } from "@mui/material";
+import { Box } from "@mui/system";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 
 const AddExperience = () => {
+  const [errors, setErrors] = useState({});
   const [experience, setExperience] = useState({
-    start_month: "- -",
-    end_month: "- -",
-    start_year: "- -",
-    end_year: "",
+    start_date: "",
+    end_date: "",
   });
   const [workingStatus, setWorkingStatus] = useState(false);
-  const months = [
-    "- -",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   const handleInputs = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    // alert("hiii");
     setExperience({ ...experience, [name]: value });
   };
 
   const addExperience = async () => {
     const data = await addWorkExperience(experience);
     setExperience({});
-    document.querySelector(".form").reset();
+    // document.querySelector(".form").reset();
     if (data?.error) {
       toast.error(data.error);
     } else {
-      toast.success(data.message);
+      window.location.reload(false);
     }
   };
 
@@ -49,156 +45,117 @@ const AddExperience = () => {
   };
 
   return (
-    <div>
-      <div
-        class="modal fade"
-        id="workExperienceModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Add Work Experience
-              </h1>
-            </div>
-            <div class="modal-body">
-              <form className="form">
-                <div className="mb-3">
-                  <label htmlFor="company" className="form-label">
-                    Company/Organization*
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="company"
-                    name="company"
-                    onChange={handleInputs}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="role" className="form-label">
-                    Role*
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="role"
-                    name="role"
-                    onChange={handleInputs}
-                  />
-                </div>
-                <div class="form-check mb-2">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckChecked"
-                    onChange={handleWorkingStatus}
-                  />
-                  <label class="form-check-label" for="flexCheckChecked">
-                    I am currently working in this role
-                  </label>
-                </div>
-                <div className="mb-3 d-flex justify-content-between">
-                  <div style={{ width: "49%" }}>
-                    <label htmlFor="start_month" className="form-label">
-                      Start Month*
-                    </label>
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                      id="start_month"
-                      value={experience.start_month}
-                      name="start_month"
-                      onChange={handleInputs}
-                    >
-                      {months.map((month) => {
-                        return <option value={month}>{month}</option>;
-                      })}
-                    </select>
-                  </div>
-                  <div style={{ width: "49%" }}>
-                    <label htmlFor="start_year" className="form-label">
-                      Start Year*
-                    </label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="start_year"
-                      name="start_year"
-                      onChange={handleInputs}
-                    />
-                  </div>
-                </div>
-                <div className="mb-3 d-flex justify-content-between">
-                  <div style={{ width: "49%" }}>
-                    <label htmlFor="end_month" className="form-label">
-                      End Month*
-                    </label>
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                      id="end_month"
-                      disabled={workingStatus}
-                      value={experience.end_month}
-                      name="end_month"
-                      onChange={handleInputs}
-                    >
-                      {months.map((month) => {
-                        return <option value={month}>{month}</option>;
-                      })}
-                    </select>
-                  </div>
-                  <div style={{ width: "49%" }}>
-                    <label htmlFor="end_year" className="form-label">
-                      End Year*
-                    </label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="end_year"
-                      name="end_year"
-                      onChange={handleInputs}
-                      disabled={workingStatus}
-                      value={experience.end_year}
-                    />
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="description" className="form-label">
-                    Description*
-                  </label>
-                  <textarea
-                    type="text"
-                    className="form-control"
-                    id="description"
-                    name="description"
-                    onChange={handleInputs}
-                    rows={4}
-                  />
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
+    <div
+      className="modal fade"
+      id="workExperienceModal"
+      tabIndex="-1"
+      aria-labelledby="workExperienceModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header mb-2">
+            <h1 className="modal-title fs-5" id="workExperienceModalLabel">
+              Add Experience
+            </h1>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <TextField
+              name="company"
+              onChange={handleInputs}
+              variant="outlined"
+              size="small"
+              type="text"
+              label="Company/Organization"
+              error={Boolean(errors.company)}
+              helperText={errors.company}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <TextField
+              name="role"
+              onChange={handleInputs}
+              variant="outlined"
+              size="small"
+              type="text"
+              label="Role"
+              error={Boolean(errors.role)}
+              helperText={errors.role}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <FormControlLabel
+              control={<Checkbox />}
+              label="I am currently working in this role"
+              onChange={handleWorkingStatus}
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker", "DatePicker"]}>
+                <DatePicker
+                  label={"Start Date"}
+                  views={["month", "year"]}
+                  name="start_date"
+                  onChange={(value) => {
+                    setExperience({ ...experience, start_date: value["$d"] });
+                  }}
+                />
+                <DatePicker
+                  label={"End Date"}
+                  views={["month", "year"]}
+                  name="end_date"
+                  // onChange={handleInputs}
+                  disabled={workingStatus}
+                  onChange={(value) => {
+                    setExperience({ ...experience, end_date: value["$d"] });
+                  }}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "center", my: 1, px: 2 }}>
+            <TextField
+              name="description"
+              onChange={handleInputs}
+              variant="outlined"
+              size="small"
+              type="text"
+              label="Description"
+              error={Boolean(errors.description)}
+              helperText={errors.description}
+              fullWidth
+              multiline
+              rows={5}
+            />
+          </Box>
+
+          <div className="modal-footer mt-2">
+            <Stack spacing={1.5} direction="row">
+              <Button
                 data-bs-dismiss="modal"
+                variant="contained"
+                id="closeModal"
               >
                 Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
+              </Button>
+              <Button
+                variant="contained"
                 onClick={addExperience}
-                data-bs-dismiss="modal"
+                color="success"
               >
-                Add
-              </button>
-            </div>
+                Save Changes
+              </Button>
+            </Stack>
           </div>
         </div>
       </div>

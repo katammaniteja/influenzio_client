@@ -1,39 +1,61 @@
 import React from "react";
 import "./Home.css";
-import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
-    <MDBContainer
-      fluid
-      className="p-4 background-radial-gradient overflow-hidden"
-    >
-      <MDBRow>
-        <MDBCol
-          md="6"
-          className="text-center text-md-start d-flex flex-column justify-content-center"
-        >
+    <>
+      <div
+        className="p-4 background-radial-gradient overflow-hidden container-fluid home"
+        style={{ height: screenHeight - 110.2 }}
+      >
+        <div>
           <h3
-            className="my-5 display-3 fw-bold ls-tight px-3"
+            className=" display-3 fw-bold ls-tight"
             style={{ color: "hsl(218, 81%, 95%)" }}
           >
-            <h1>The best we offer</h1>
             <span style={{ color: "hsl(218, 81%, 75%)" }}>
-              <h3>for your business</h3>
+              <h3 className="text-center" style={{ fontSize: 50 }}>
+                Hire Best Influencers
+              </h3>
             </span>
           </h3>
 
           <p
-            className="px-3"
-            style={{ color: "hsl(218, 81%, 85%)", padding: "0px 0px" }}
+            // className="px-3"
+            style={{ color: "#ffffff", padding: "0px 0px" }}
           >
-            At Shoutcart, we connect you with popular influencers to get your
-            brand in front of their audience! 750M+ Follower & Subscriber
-            network, simple setup, guaranteed & secure process.
+            At Influenzio, we connect you with popular influencers to run the
+            compaigns, or marketing for your company
           </p>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+          <div
+            style={{ display: "flex", justifyContent: "center" }}
+            className="hello"
+          >
+            <a href="/influencers" class="btn-browse-influencers">
+              Browse Influencers
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="footer" style={{ height: 55, paddingTop: 15 }}>
+        <div className="text-center">
+          <span style={{ color: "grey" }}>Designed and Developed by</span>{" "}
+          Maniteja
+        </div>
+      </div>
+    </>
   );
 }
 

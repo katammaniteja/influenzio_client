@@ -1,14 +1,14 @@
 import React from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import logo from "./../../images/logo.png";
+import logo1 from "./../../images/logo1.png";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className="navbar navbar-expand-lg bg-light" style={{ height: 55 }}>
       <div className="container-fluid">
         <NavLink className="navbar-brand ms-3" to="/">
-          <img src={logo} alt="" className="title-logo" />
+          <img src={logo1} alt="" className="title-logo" />
         </NavLink>
         <button
           className="navbar-toggler"

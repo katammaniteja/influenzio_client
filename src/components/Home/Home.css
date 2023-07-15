@@ -1,3 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Set the body to fill the entire viewport height */
+
+}
+
+.home{
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; 
+}
+
+.btn-browse-influencers {
+  display: inline-block;
+  width: 241px;
+  height: 49px;
+  text-align: center;
+  font-size: 20px;
+  color: #434343;
+  border-radius: 25px;
+  background: #fff;
+  padding: 9px 0;
+  font-weight: 600;
+  transition: .2s ease-in-out;
+  margin: 0 0 30px;
+  box-shadow: 0 4px 18px 8px rgba(0, 0, 0, 0.07);
+  /* align-items: center; */
+}
+
+.btn-browse-influencers:hover{
+  color: #fff;
+  background-color: #bb399b;
+}
+
 .background-radial-gradient {
   background-color: hsl(218, 41%, 15%);
   background-image: radial-gradient(

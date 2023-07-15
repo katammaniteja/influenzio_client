@@ -5,11 +5,26 @@ import AddExperience from "./AddExperience";
 import { MdDelete } from "react-icons/md";
 import { BsPencil } from "react-icons/bs";
 import { deleteWorkExperience } from "../../utils/API_CALLS";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export default function WorkExperience({ work_experience }) {
   const deleteExperience = async (id) => {
-    console.log(id);
-    await deleteWorkExperience({ id });
+    confirmAlert({
+      message: "Are you sure to do delete?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            await deleteWorkExperience({ id });
+            window.location.reload(false);
+          },
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   };
 
   return (
@@ -39,7 +54,11 @@ export default function WorkExperience({ work_experience }) {
                   </div>
                 </h5>
                 <p className="resume-card-name">
-                  {data.role}(Feb 2022-July 2022)
+                  {data.role}({data.start_date.substring(0, 10)} -{" "}
+                  {data.end_date == ""
+                    ? "Present"
+                    : data.end_date.substring(0, 10)}
+                  )
                 </p>
                 <p className="resume-card-details">{data.description}</p>
               </div>
