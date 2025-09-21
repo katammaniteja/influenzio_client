@@ -190,7 +190,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 **Maniteja**
 - Email: katammaniteja@gmail.com
-- LinkedIn: [[mani-teja-aaa04721a]](https://www.linkedin.com/in/mani-teja-aaa04721a/)
+- LinkedIn: [mani-teja-aaa04721a](https://www.linkedin.com/in/mani-teja-aaa04721a/)
   
 ## 🙏 Acknowledgments
 
