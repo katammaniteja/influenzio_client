@@ -51,7 +51,8 @@ A full-stack MERN application connecting companies with social media influencers
 ### Profile Management
 | Profile Overview | Add Experience |
 |-----------------|----------------|
-| ![Profile](https://drive.google.com/file/d/18Q46AQQsXlKvaP1EgIobsLDUZVp3bnV7/view?usp=share_link) | ![Add Experience](https://drive.google.com/file/d/1E40jUV93wrP0Kzbi4IaDEzT2QBW1o0kO/view?usp=share_link) |
+| ![Profile](<img width="1451" height="744" alt="Screenshot at Sep 21 15-32-35" src="https://github.com/user-attachments/assets/42e11df9-3607-45ce-80d1-c04a1500fa46" />) | ![Add Experience](<img width="1448" height="743" alt="Screenshot at Sep 21 15-32-03" src="https://github.com/user-attachments/assets/e5cc410e-3fb2-4be0-b677-dd0ef65d05fe" />
+) |
 
 ### Influencer Discovery
 ![Browse Influencers](https://drive.google.com/file/d/1hrd6lkRe3DRNm2b6A3HaK1jhJH9X69tv/view?usp=share_link)
