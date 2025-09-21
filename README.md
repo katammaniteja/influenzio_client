@@ -40,7 +40,8 @@ A full-stack MERN application connecting companies with social media influencers
 | Login | Registration |
 |-------|-------------|
 | !<img width="862" height="702" alt="Screenshot at Sep 21 16-41-01" src="https://github.com/user-attachments/assets/61b00443-9a39-4abc-9fe8-6e0876438649" />
-| ![Registration Screen](https://drive.google.com/file/d/1SrYkav5nNaD78-x-XvVop-4MyAZHykvm/view?usp=share_link) |![Uploading Screenshot at Sep 20 22-47-02.png…]()
+| !<img width="865" height="697" alt="Screenshot at Sep 21 16-41-18" src="https://github.com/user-attachments/assets/acbba429-4765-4a59-8e9a-a8c4e5f2bf0a" />
+[Registration Screen](https://drive.google.com/file/d/1SrYkav5nNaD78-x-XvVop-4MyAZHykvm/view?usp=share_link) |![Uploading Screenshot at Sep 20 22-47-02.png…]()
 
 
 ### Main Dashboard![Uploading Screenshot at Sep 21 16-41-01.png…]()
