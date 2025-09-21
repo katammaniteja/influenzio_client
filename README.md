@@ -39,21 +39,21 @@ A full-stack MERN application connecting companies with social media influencers
 ### Authentication System
 | Login | Registration |
 |-------|-------------|
-| ![Login Screen](https://via.placeholder.com/400x300?text=Login+Screen) | ![Registration Screen](https://via.placeholder.com/400x300?text=Registration+Screen) |
+| ![Login Screen](https://drive.google.com/file/d/1jtBMhqzyyhJYkOLEN5VhS0f3KvCSbVOE/view?usp=share_link) | ![Registration Screen](https://drive.google.com/file/d/1SrYkav5nNaD78-x-XvVop-4MyAZHykvm/view?usp=share_link) |
 
 ### Main Dashboard
-![Dashboard](https://via.placeholder.com/800x400?text=Main+Dashboard)
+![Dashboard](https://drive.google.com/file/d/1-vGitIUBUAQTxZYtVXvVXRfdugTZQPuz/view?usp=share_link)
 
 ### Profile Management
 | Profile Overview | Add Experience |
 |-----------------|----------------|
-| ![Profile](https://via.placeholder.com/400x300?text=Profile+Management) | ![Add Experience](https://via.placeholder.com/400x300?text=Add+Experience) |
+| ![Profile](https://drive.google.com/file/d/18Q46AQQsXlKvaP1EgIobsLDUZVp3bnV7/view?usp=share_link) | ![Add Experience](https://drive.google.com/file/d/1E40jUV93wrP0Kzbi4IaDEzT2QBW1o0kO/view?usp=share_link) |
 
 ### Influencer Discovery
-![Browse Influencers](https://via.placeholder.com/800x400?text=Browse+Influencers)
+![Browse Influencers](https://drive.google.com/file/d/1hrd6lkRe3DRNm2b6A3HaK1jhJH9X69tv/view?usp=share_link)
 
 ### Real-time Messaging
-![Chat System](https://via.placeholder.com/800x400?text=Real-time+Chat)
+![Chat System](https://drive.google.com/file/d/1jtBMhqzyyhJYkOLEN5VhS0f3KvCSbVOE/view?usp=share_link)
 
 ## 🏃‍♂️ Getting Started
 
