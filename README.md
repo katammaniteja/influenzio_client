@@ -190,9 +190,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 **Maniteja**
 - Email: katammaniteja@gmail.com
-- LinkedIn: [Your LinkedIn Profile]
-- GitHub: [Your GitHub Profile]
-
+- LinkedIn: [[Your LinkedIn Profile]](https://www.linkedin.com/in/mani-teja-aaa04721a/)
+  
 ## 🙏 Acknowledgments
 
 - Thanks to all the open-source libraries that made this project possible
