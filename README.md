@@ -39,28 +39,21 @@ A full-stack MERN application connecting companies with social media influencers
 ### Authentication System
 | Login | Registration |
 |-------|-------------|
-| ![Login Screen](<img width="862" height="702" alt="Screenshot at Sep 21 16-41-01" src="https://github.com/user-attachments/assets/61b00443-9a39-4abc-9fe8-6e0876438649" />)
-| ![Registration Screen] (<img width="865" height="697" alt="Screenshot at Sep 21 16-41-18" src="https://github.com/user-attachments/assets/acbba429-4765-4a59-8e9a-a8c4e5f2bf0a" />)
+| ![Login Screen](https://github.com/user-attachments/assets/61b00443-9a39-4abc-9fe8-6e0876438649) | ![Registration Screen](https://github.com/user-attachments/assets/acbba429-4765-4a59-8e9a-a8c4e5f2bf0a) |
 
-
-### Main Dashboard![Uploading Screenshot at Sep 21 16-41-01.png…]()
-
-![Dashboard](<img width="1448" height="741" alt="Screenshot at Sep 21 15-18-37" src="https://github.com/user-attachments/assets/0339b02e-55dd-4613-93ec-e1089bb9be98" />
-)
+### Main Dashboard
+![Dashboard](https://github.com/user-attachments/assets/0339b02e-55dd-4613-93ec-e1089bb9be98)
 
 ### Profile Management
 | Profile Overview | Add Experience |
 |-----------------|----------------|
-| ![Profile](<img width="1451" height="744" alt="Screenshot at Sep 21 15-32-35" src="https://github.com/user-attachments/assets/42e11df9-3607-45ce-80d1-c04a1500fa46" />) | ![Add Experience](<img width="1448" height="743" alt="Screenshot at Sep 21 15-32-03" src="https://github.com/user-attachments/assets/e5cc410e-3fb2-4be0-b677-dd0ef65d05fe" />
-) |
+| ![Profile](https://github.com/user-attachments/assets/42e11df9-3607-45ce-80d1-c04a1500fa46) | ![Add Experience](https://github.com/user-attachments/assets/e5cc410e-3fb2-4be0-b677-dd0ef65d05fe) |
 
 ### Influencer Discovery
-![Browse Influencers](<img width="1453" height="743" alt="Screenshot at Sep 21 15-38-12" src="https://github.com/user-attachments/assets/b2bebbce-ac92-4002-8359-ebd232ad2841" />
-)
+![Browse Influencers](https://github.com/user-attachments/assets/b2bebbce-ac92-4002-8359-ebd232ad2841)
 
 ### Real-time Messaging
-![Chat System](<img width="1449" height="749" alt="Screenshot at Sep 21 15-41-42" src="https://github.com/user-attachments/assets/dc2fecf5-dc3d-45f4-852b-177578f412fd" />
-)
+![Chat System](https://github.com/user-attachments/assets/dc2fecf5-dc3d-45f4-852b-177578f412fd)
 
 ## 🏃‍♂️ Getting Started
 
