@@ -45,7 +45,8 @@ A full-stack MERN application connecting companies with social media influencers
 
 ### Main Dashboard![Uploading Screenshot at Sep 21 16-41-01.png…]()
 
-![Dashboard](https://drive.google.com/file/d/1-vGitIUBUAQTxZYtVXvVXRfdugTZQPuz/view?usp=share_link)
+![Dashboard](<img width="1448" height="741" alt="Screenshot at Sep 21 15-18-37" src="https://github.com/user-attachments/assets/0339b02e-55dd-4613-93ec-e1089bb9be98" />
+)
 
 ### Profile Management
 | Profile Overview | Add Experience |
@@ -54,7 +55,7 @@ A full-stack MERN application connecting companies with social media influencers
 ) |
 
 ### Influencer Discovery
-![Browse Influencers](<img width="1448" height="741" alt="Screenshot at Sep 21 15-18-37" src="https://github.com/user-attachments/assets/3bf61205-5b85-43c7-bad0-8d28b64d92e4" />
+![Browse Influencers](<img width="1453" height="743" alt="Screenshot at Sep 21 15-38-12" src="https://github.com/user-attachments/assets/b2bebbce-ac92-4002-8359-ebd232ad2841" />
 )
 
 ### Real-time Messaging
