@@ -1,70 +1,204 @@
-# Getting Started with Create React App
+# Influenzio 🌟
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack MERN application connecting companies with social media influencers for marketing campaigns and collaborations.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **User Authentication**: Secure login and registration system with JWT tokens and Bcrypt password hashing
+- **Profile Management**: Complete user profiles for both companies and influencers with work experience tracking
+- **Real-time Messaging**: Instant communication between companies and influencers using Socket.io
+- **Influencer Discovery**: Browse and search influencers by category, followers, location, and expertise
+- **Campaign Collaboration**: Platform for companies to find and hire influencers for marketing campaigns
+- **Responsive Design**: Mobile-friendly interface that works across all devices
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend:**
+- React.js
+- CSS3
+- Responsive Design
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Backend:**
+- Node.js
+- Express.js
+- Socket.io (Real-time communication)
 
-### `npm test`
+**Database:**
+- MongoDB
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Cloud Services:**
+- Firebase Cloud Storage (File management)
+- Firebase Hosting (Deployment)
 
-### `npm run build`
+**Authentication:**
+- JWT (JSON Web Tokens)
+- Bcrypt (Password hashing)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📸 Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Authentication System
+| Login | Registration |
+|-------|-------------|
+| ![Login Screen](https://via.placeholder.com/400x300?text=Login+Screen) | ![Registration Screen](https://via.placeholder.com/400x300?text=Registration+Screen) |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Main Dashboard
+![Dashboard](https://via.placeholder.com/800x400?text=Main+Dashboard)
 
-### `npm run eject`
+### Profile Management
+| Profile Overview | Add Experience |
+|-----------------|----------------|
+| ![Profile](https://via.placeholder.com/400x300?text=Profile+Management) | ![Add Experience](https://via.placeholder.com/400x300?text=Add+Experience) |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Influencer Discovery
+![Browse Influencers](https://via.placeholder.com/800x400?text=Browse+Influencers)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Real-time Messaging
+![Chat System](https://via.placeholder.com/800x400?text=Real-time+Chat)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🏃‍♂️ Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- Firebase account
 
-## Learn More
+### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/influenzio.git
+   cd influenzio
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **Install backend dependencies**
+   ```bash
+   cd backend
+   npm install
+   ```
 
-### Code Splitting
+3. **Install frontend dependencies**
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. **Environment Variables**
+   
+   Create `.env` file in the backend directory:
+   ```env
+   PORT=5000
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   FIREBASE_CONFIG=your_firebase_config
+   ```
 
-### Analyzing the Bundle Size
+5. **Run the application**
+   
+   Backend (Terminal 1):
+   ```bash
+   cd backend
+   npm start
+   ```
+   
+   Frontend (Terminal 2):
+   ```bash
+   cd frontend
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+6. **Access the application**
+   - Frontend: `http://localhost:3000`
+   - Backend API: `http://localhost:5000`
 
-### Making a Progressive Web App
+## 🌐 Live Demo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[Visit Influenzio](https://your-firebase-app.web.app)
 
-### Advanced Configuration
+## 📁 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+influenzio/
+├── backend/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── controllers/
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.js
+│   └── public/
+└── README.md
+```
 
-### Deployment
+## 🔧 API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Authentication
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
 
-### `npm run build` fails to minify
+### User Management
+- `GET /api/users/profile` - Get user profile
+- `PUT /api/users/profile` - Update user profile
+- `POST /api/users/experience` - Add work experience
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Influencers
+- `GET /api/influencers` - Get all influencers
+- `GET /api/influencers/search` - Search influencers
+- `GET /api/influencers/:id` - Get specific influencer
+
+### Messaging
+- `POST /api/messages` - Send message
+- `GET /api/messages/:conversationId` - Get conversation history
+
+## 🚀 Key Features Implementation
+
+### Real-time Messaging
+```javascript
+// Socket.io implementation for instant messaging
+socket.on('sendMessage', (messageData) => {
+  io.to(messageData.receiverId).emit('receiveMessage', messageData);
+});
+```
+
+### Secure Authentication
+- JWT token-based authentication
+- Bcrypt password hashing
+- Protected routes and middleware
+
+### File Management
+- Firebase Cloud Storage integration
+- Profile image uploads
+- Static file serving
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## 👨‍💻 Author
+
+**Maniteja**
+- Email: katammaniteja@gmail.com
+- LinkedIn: [Your LinkedIn Profile]
+- GitHub: [Your GitHub Profile]
+
+## 🙏 Acknowledgments
+
+- Thanks to all the open-source libraries that made this project possible
+- Special thanks to the MERN stack community
+- Firebase for providing excellent cloud services
+
+---
+
+⭐ Star this repository if you found it helpful!
