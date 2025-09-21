@@ -39,9 +39,8 @@ A full-stack MERN application connecting companies with social media influencers
 ### Authentication System
 | Login | Registration |
 |-------|-------------|
-| !<img width="862" height="702" alt="Screenshot at Sep 21 16-41-01" src="https://github.com/user-attachments/assets/61b00443-9a39-4abc-9fe8-6e0876438649" />
-| !<img width="865" height="697" alt="Screenshot at Sep 21 16-41-18" src="https://github.com/user-attachments/assets/acbba429-4765-4a59-8e9a-a8c4e5f2bf0a" />
-[Registration Screen](https://drive.google.com/file/d/1SrYkav5nNaD78-x-XvVop-4MyAZHykvm/view?usp=share_link) |![Uploading Screenshot at Sep 20 22-47-02.png…]()
+| ![Login Screen](<img width="862" height="702" alt="Screenshot at Sep 21 16-41-01" src="https://github.com/user-attachments/assets/61b00443-9a39-4abc-9fe8-6e0876438649" />)
+| ![Registration Screen] (<img width="865" height="697" alt="Screenshot at Sep 21 16-41-18" src="https://github.com/user-attachments/assets/acbba429-4765-4a59-8e9a-a8c4e5f2bf0a" />)
 
 
 ### Main Dashboard![Uploading Screenshot at Sep 21 16-41-01.png…]()
@@ -55,10 +54,12 @@ A full-stack MERN application connecting companies with social media influencers
 ) |
 
 ### Influencer Discovery
-![Browse Influencers](https://drive.google.com/file/d/1hrd6lkRe3DRNm2b6A3HaK1jhJH9X69tv/view?usp=share_link)
+![Browse Influencers](<img width="1448" height="741" alt="Screenshot at Sep 21 15-18-37" src="https://github.com/user-attachments/assets/3bf61205-5b85-43c7-bad0-8d28b64d92e4" />
+)
 
 ### Real-time Messaging
-![Chat System](https://drive.google.com/file/d/1jtBMhqzyyhJYkOLEN5VhS0f3KvCSbVOE/view?usp=share_link)
+![Chat System](<img width="1449" height="749" alt="Screenshot at Sep 21 15-41-42" src="https://github.com/user-attachments/assets/dc2fecf5-dc3d-45f4-852b-177578f412fd" />
+)
 
 ## 🏃‍♂️ Getting Started
 
