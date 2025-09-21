@@ -39,9 +39,12 @@ A full-stack MERN application connecting companies with social media influencers
 ### Authentication System
 | Login | Registration |
 |-------|-------------|
-| ![Login Screen](https://drive.google.com/file/d/1jtBMhqzyyhJYkOLEN5VhS0f3KvCSbVOE/view?usp=share_link) | ![Registration Screen](https://drive.google.com/file/d/1SrYkav5nNaD78-x-XvVop-4MyAZHykvm/view?usp=share_link) |
+| ![Login Screen](<img width="862" height="702" alt="Screenshot at Sep 21 16-41-01" src="https://github.com/user-attachments/assets/61b00443-9a39-4abc-9fe8-6e0876438649" />
+) | ![Registration Screen](https://drive.google.com/file/d/1SrYkav5nNaD78-x-XvVop-4MyAZHykvm/view?usp=share_link) |![Uploading Screenshot at Sep 20 22-47-02.png…]()
 
-### Main Dashboard
+
+### Main Dashboard![Uploading Screenshot at Sep 21 16-41-01.png…]()
+
 ![Dashboard](https://drive.google.com/file/d/1-vGitIUBUAQTxZYtVXvVXRfdugTZQPuz/view?usp=share_link)
 
 ### Profile Management
